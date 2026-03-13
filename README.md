@@ -8,7 +8,9 @@
 
 ## 🚀 Live Demo
 
-> Deploy on [Netlify](https://netlify.com) for free HTTPS hosting — required for Geolocation API to work properly.
+🔗 **[https://nexatrack.netlify.app](https://nexatrack.netlify.app)**
+
+> Hosted on Netlify with free HTTPS — Geolocation API works perfectly.
 
 ---
 
@@ -30,7 +32,6 @@
 ---
 
 ## 📁 Project Structure
-
 ```
 NexaTrack/
 │
@@ -71,7 +72,6 @@ NexaTrack/
 ## ⚙️ Setup & Installation
 
 ### 1. Clone the repository
-
 ```bash
 git clone https://github.com/YOUR_USERNAME/nexatrack.git
 cd nexatrack
@@ -92,7 +92,6 @@ cd nexatrack
 3. Create "Contact Us" template → Copy **Template ID**
 4. Go to Account → General → Copy **Public Key**
 5. Open `script.js` and update these lines:
-
 ```javascript
 const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";
 const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";
@@ -113,7 +112,6 @@ const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 ---
 
 ## 📱 How Device Recovery Works
-
 ```
 Before losing device:
 1. Open NexaTrack → Click "Track My Location"
@@ -134,10 +132,10 @@ Via Phone Number:
 ## 🚀 Deployment (Netlify — Free)
 
 1. Go to [netlify.com](https://netlify.com) → Login
-2. Click **"Add new site"** → **"Deploy manually"**
-3. Drag and drop your **project folder**
-4. Get your free HTTPS link: `https://nexatrack-xxx.netlify.app`
-5. Location tracking works perfectly on HTTPS ✅
+2. Click **"Add new site"** → **"Import an existing project"** → **GitHub**
+3. Select your **nexatrack** repository
+4. Click **"Deploy site"**
+5. Live link: [https://nexatrack.netlify.app](https://nexatrack.netlify.app) ✅
 
 ---
 
@@ -163,9 +161,16 @@ Via Phone Number:
 
 ## 👨‍💻 Developer
 
-**Sandeep**
+**Sandeep**  
 Frontend Web Developer — Passionate about building interactive web applications.
 
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
 
 ## ⭐ Support
 
