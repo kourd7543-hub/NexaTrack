@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | NexaTrack</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<canvas id="particles"></canvas>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon"><i class="fa-solid fa-location-dot"></i></div>
+    <h2>Nexa<span>Track</span></h2>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="find-device.html">Find Device</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+  <div class="nav-status"><span class="status-dot"></span><span>System Online</span></div>
+</header>
+
+<section class="about-hero">
+  <div class="hero-badge"><i class="fa-solid fa-envelope"></i> GET IN TOUCH</div>
+  <h1>Contact Us</h1>
+  <p>Have a question or feedback? Reach out anytime.</p>
+</section>
+
+<section class="contact-container">
+  <div class="contact-box">
+    <h2><i class="fa-solid fa-paper-plane"></i> Send Message</h2>
+    <form id="contactForm">
+      <div class="input-group">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="from_name" placeholder="Your Name" required>
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" id="from_email" placeholder="Your Email" required>
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-message"></i>
+        <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      </div>
+      <button type="submit" id="submitBtn">
+        <i class="fa-solid fa-paper-plane"></i> Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo"><i class="fa-solid fa-location-dot"></i> NexaTrack</div>
+    <p>© 2026 NexaTrack | Developed by Sandeep</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- EmailJS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="particles.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
