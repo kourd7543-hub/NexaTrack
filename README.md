@@ -166,13 +166,6 @@ Via Phone Number:
 **Sandeep**
 Frontend Web Developer — Passionate about building interactive web applications.
 
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
 
 ## ⭐ Support
 
