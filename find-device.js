@@ -278,7 +278,7 @@ async function watchLiveLocation() {
   setTimeout(() => {
     clearInterval(liveWatchInterval);
     showToast('Timeout — device did not respond.', 'error');
-  }, 300000);
+  }, 600000);
 }
 
 function stopWatching() {
