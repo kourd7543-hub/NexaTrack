@@ -337,7 +337,7 @@ function showError(error) {
 }
 
 // ========== SAVE TO SERVER ==========
-const API_URL = 'https://nexatrack.netlify.app/.netlify/functions/location';
+const API_URL = 'https://nexa-track.vercel.app/api/location';
 
 async function saveLocationToServer(lat, lon, accuracy, time) {
   try {
