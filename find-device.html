@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Lost Device | NexaTrack</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+<canvas id="particles"></canvas>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon"><i class="fa-solid fa-location-dot"></i></div>
+    <h2>Nexa<span>Track</span></h2>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="find-device.html" class="active">Find Device</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-status"><span class="status-dot"></span><span>System Online</span></div>
+</header>
+
+<section class="about-hero">
+  <div class="hero-badge"><i class="fa-solid fa-magnifying-glass-location"></i> DEVICE RECOVERY</div>
+  <h1>Lost Device Finder</h1>
+  <p>Locate a lost device using phone number, share link, or device code</p>
+</section>
+
+<section class="find-section">
+  <div class="find-grid">
+
+    <!-- Method 1: Phone Number -->
+    <div class="find-card">
+      <div class="find-card-icon"><i class="fa-solid fa-phone"></i></div>
+      <h3>Find by Phone Number</h3>
+      <p>Send a location request SMS to the lost device. When opened, location is shared back.</p>
+      <div class="find-input-group">
+        <input type="tel" id="phoneInput" placeholder="+91 98765 43210" />
+        <button class="btn-primary" onclick="findByPhone()">
+          <i class="fa-solid fa-paper-plane"></i> Send Request
+        </button>
+      </div>
+      <div class="find-note">
+        <i class="fa-solid fa-circle-info"></i>
+        This generates a tracking link sent via WhatsApp or SMS to that number.
+      </div>
+    </div>
+
+    <!-- Method 2: Share Link / Code -->
+    <div class="find-card">
+      <div class="find-card-icon"><i class="fa-solid fa-link"></i></div>
+      <h3>Find by Share Link or Code</h3>
+      <p>Enter a device tracking code or paste the share link to view live location.</p>
+      <div class="find-input-group">
+        <input type="text" id="codeInput" placeholder="Enter device code (e.g. TS-48291)" />
+        <button class="btn-primary" onclick="findByCode()">
+          <i class="fa-solid fa-search"></i> Track Device
+        </button>
+      </div>
+      <div class="find-note">
+        <i class="fa-solid fa-circle-info"></i>
+        Device code is generated when "Share Location" is clicked on any device.
+      </div>
+    </div>
+    <button class="btn-secondary" onclick="watchLiveLocation()" style="margin-top:10px;width:100%">
+  <i class="fa-solid fa-satellite-dish fa-beat"></i> Watch Live Location
+</button>
+
+    <!-- Method 3: My Own Lost Device -->
+    <div class="find-card full-width">
+      <div class="find-card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+      <h3>I Lost My Own Device</h3>
+      <p>If you enabled tracking before losing your device, you can view its last known location below.</p>
+      <div class="last-location-box" id="lastLocationBox">
+        <div class="no-history">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          No saved location found for this session. 
+          <strong>To enable this, click "Track My Location" on the home page before losing your device.</strong>
+        </div>
+      </div>
+      <div id="recoveryMap" style="display:none"></div>
+      <button class="btn-secondary" onclick="loadLastKnown()" style="margin-top:15px">
+        <i class="fa-solid fa-clock-rotate-left"></i> Load Last Known Location
+      </button>
+    </div>
+
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-it-works">
+    <h2><i class="fa-solid fa-circle-question"></i> How Device Recovery Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h4>Before Losing Device</h4>
+          <p>Go to home page → click "Track My Location" → click "Share Location". This generates a unique device code.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h4>Save Your Device Code</h4>
+          <p>Note the TS-XXXXX code or save the share link in a safe place like your email.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h4>If Device is Lost</h4>
+          <p>Come to this page from any device. Enter your device code or phone number to find it.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <h4>Via Phone Number</h4>
+          <p>Enter the lost device's phone number. A WhatsApp/SMS message with tracking link is sent. When opened, location is shared.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo"><i class="fa-solid fa-location-dot"></i> NexaTrack</div>
+    <p>© 2026 NexaTrack | Developed by Sandeep</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="find-device.js"></script>
+<script src="particles.js"></script>
+</body>
+</html>
