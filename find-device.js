@@ -1,7 +1,7 @@
 // ========== NEXATRACK — FIND DEVICE SCRIPT ==========
 
 const FIREBASE_URL = "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com";
-const API_URL = 'https://nexatrack.netlify.app/.netlify/functions/location';
+const API_URL = 'https://nexa-track.vercel.app/api/location'; 
 
 function showToast(msg, type = 'info') {
   const toast = document.getElementById('toast');
