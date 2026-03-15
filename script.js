@@ -169,7 +169,9 @@ function showPosition(position) {
     .catch(() => {
       renderHistory();
     });
-
+if (new URLSearchParams(window.location.search).get('track') === '1') {
+  saveLocationToServer(lat, lon, accuracy, time);
+}
   showToast('Location tracked successfully!', 'success');
   document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
 }
@@ -334,6 +336,21 @@ function showError(error) {
   showToast(msgs[error.code] || 'Unknown error occurred.', 'error');
 }
 
+// ========== SAVE TO SERVER ==========
+const API_URL = 'https://nexatrack.netlify.app/.netlify/functions/location';
+
+async function saveLocationToServer(lat, lon, accuracy, time) {
+  try {
+    await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lat, lon, accuracy, time })
+    });
+    console.log('✅ Location saved to server');
+  } catch(e) {
+    console.error('Save error:', e);
+  }
+}
 // ========== TOAST ==========
 function showToast(msg, type = 'info') {
   const toast = document.getElementById('toast');
