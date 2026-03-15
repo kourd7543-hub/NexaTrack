@@ -268,7 +268,7 @@ async function watchLiveLocation() {
       const data = await res.json();
       if (data && data.lat) {
         const age = Date.now() - data.updatedAt;
-        if (age < 120000) {
+        if (age < 600000) {
           clearInterval(liveWatchInterval);
           showLiveResult(data);
         }
