@@ -127,9 +127,7 @@ function findByPhone() {
   const cleaned = phone.replace(/[\s\-\(\)\+]/g, '');
   if (cleaned.length < 10) { showToast('Please enter a valid phone number.', 'error'); return; }
   const siteLink = 'https://nexa-track.vercel.app/index.html?track=1';
-  const msg = encodeURIComponent(
-    `🔍 Someone is trying to locate this device using NexaTrack.\n\nIf this is your device, click the link below to share your location:\n${siteLink}\n\n⚠️ Only respond if you recognize this request.`
-  );
+    const msg = encodeURIComponent(`🔍 NexaTrack: Share your location here:\n${siteLink}`);
   const waNum = cleaned.startsWith('91') ? cleaned : `91${cleaned}`;
   const box   = document.getElementById('lastLocationBox');
   box.innerHTML = `
