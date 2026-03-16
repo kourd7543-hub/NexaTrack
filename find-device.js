@@ -151,6 +151,7 @@ function findByPhone() {
     </div>
   `;
   showToast('Choose method — WhatsApp or SMS!', 'success');
+  document.getElementById('lastLocationBox').scrollIntoView({ behavior: 'smooth' });
 }
 
 async function findByCode() {
@@ -259,6 +260,7 @@ async function watchLiveLocation() {
     </div>
   `;
   showToast('Watching for device location...', 'info');
+  document.getElementById('lastLocationBox').scrollIntoView({ behavior: 'smooth' });
   liveWatchInterval = setInterval(async () => {
     try {
       const res  = await fetch(API_URL);
@@ -305,6 +307,7 @@ function showLiveResult(data) {
     </div>
   `;
   showOnLeaflet(lat, lon);
+  document.getElementById('recoveryMap').scrollIntoView({ behavior: 'smooth' });
   showToast('🎯 Live location received!', 'success');
 }
 

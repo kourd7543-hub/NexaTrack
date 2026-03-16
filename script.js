@@ -201,6 +201,7 @@ function toggleWatch() {
     btn.innerHTML = '<i class="fa-solid fa-stop"></i> Stop Live Watch';
     btn.classList.add('active-watch');
     showToast('Live watch started! Location updates automatically.', 'success');
+    document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
   }
 }
 
@@ -263,6 +264,7 @@ function shareLocation() {
   document.getElementById('shareLink').value = `${link} (Code: ${code})`;
   box.style.display = 'flex';
   showToast(`Share link ready! Code: ${code}`, 'success');
+  document.getElementById('shareLinkBox').scrollIntoView({ behavior: 'smooth' });
 }
 
 function copyShareLink() {
