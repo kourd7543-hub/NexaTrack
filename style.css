@@ -1055,7 +1055,7 @@ footer {
   height: 420px;
   max-height: 420px;
   overflow: hidden;
-  
+}
 #globe-canvas {
   position: absolute;
   top: 0; left: 0;
