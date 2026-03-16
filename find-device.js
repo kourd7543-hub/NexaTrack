@@ -188,6 +188,9 @@ function showRecoveryResult(data) {
         <button class="btn-secondary" onclick="copyCoords('${lat}', '${lon}')">
           <i class="fa-solid fa-copy"></i> Copy
         </button>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}" target="_blank" class="btn-secondary">
+  <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+</a>
       </div>
     </div>
   `;
@@ -303,6 +306,9 @@ function showLiveResult(data) {
         <button class="btn-secondary" onclick="showOnLeaflet(${lat}, ${lon})">
           <i class="fa-solid fa-location-dot"></i> Show on Map
         </button>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}" target="_blank" class="btn-secondary">
+           <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+        </a>
       </div>
     </div>
   `;
