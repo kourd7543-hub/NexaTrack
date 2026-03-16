@@ -165,13 +165,17 @@ const place = parts.join(', ') || data.display_name;
       locationHistory[0].address = place;
       saveHistory();
       renderHistory();
-      marker.bindPopup(`
-        <div class="popup-content">
-          <b><i class="fa-solid fa-location-dot"></i> Your Location</b><br>
-          <small>${place}</small><br>
-          <small>Accuracy: ${accuracy} m | ${time}</small>
-        </div>
-      `).openPopup();
+     marker.bindPopup(`
+  <div class="popup-content">
+    <b><i class="fa-solid fa-location-dot"></i> Your Location</b><br>
+    <small>${place}</small><br>
+    <small>Accuracy: ${accuracy} m | ${time}</small><br><br>
+    <a href="https://www.google.com/maps/dir/?api=1&origin=${lat},${lon}" target="_blank" 
+       style="background:#1a6ef5;color:white;padding:6px 12px;border-radius:6px;text-decoration:none;font-size:12px;display:inline-flex;align-items:center;gap:6px">
+      <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+    </a>
+  </div>
+`).openPopup();
     })
     .catch(() => {
       renderHistory();
