@@ -10,16 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <script>
-  if (new URLSearchParams(window.location.search).get('track') === '1') {
-    sessionStorage.setItem('nx_auto_track', 'true');
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        startTracking();
-      }, 1500);
-    });
-  }
-</script>
 
 <!-- PARTICLE BACKGROUND -->
 <canvas id="particles"></canvas>
@@ -187,5 +177,14 @@
 <script src="particles.js"></script>
 <script src="globe.js"></script>
 <script src="lang.js"></script>
+<script src="lang.js"></script>
+<script>
+  if (new URLSearchParams(window.location.search).get('track') === '1') {
+    window.addEventListener('load', () => {
+      setTimeout(() => startTracking(), 1500);
+    });
+  }
+</script>
+</body>
 </body>
 </html>
