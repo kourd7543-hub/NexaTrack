@@ -153,7 +153,14 @@ function showPosition(position) {
   fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
     .then(r => r.json())
     .then(data => {
-      const place = data.display_name;
+      const addr = data.address || {};
+const parts = [
+  addr.road || addr.pedestrian || addr.neighbourhood || addr.suburb,
+  addr.village || addr.town || addr.city_district || addr.county,
+  addr.city || addr.state_district,
+  addr.state
+].filter(Boolean);
+const place = parts.join(', ') || data.display_name;
       document.getElementById('address').innerText = place;
       locationHistory[0].address = place;
       saveHistory();
