@@ -1,7 +1,7 @@
 // ========== NEXATRACK — FIND DEVICE SCRIPT ==========
 
 const FIREBASE_URL = "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com";
-const API_URL = 'https://nexa-track.vercel.app/api/location'; 
+const API_URL = 'https://nexa-track.vercel.app/api/location';
 
 function showToast(msg, type = 'info') {
   const toast = document.getElementById('toast');
@@ -267,11 +267,8 @@ async function watchLiveLocation() {
       if (res.status === 404) return;
       const data = await res.json();
       if (data && data.lat) {
-        const age = Date.now() - data.updatedAt;
-        if (age < 600000) {
-          clearInterval(liveWatchInterval);
-          showLiveResult(data);
-        }
+        clearInterval(liveWatchInterval);
+        showLiveResult(data);
       }
     } catch(e) { console.error('Fetch error:', e); }
   }, 3000);

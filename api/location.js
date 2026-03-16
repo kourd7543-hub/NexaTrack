@@ -3,7 +3,7 @@ const https = require('https');
 const BIN_ID  = '69b68854c3097a1dd5285b61';
 const API_KEY = '$2a$10$pP1GSFftdJaWXlAft2OUGeGelQLKt90nNB/DlSAuhTt45ZJQaNxn6';
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   }
 
   return res.status(405).end('Method not allowed');
-}
+};
 
 function updateBin(data) {
   return new Promise((resolve, reject) => {
