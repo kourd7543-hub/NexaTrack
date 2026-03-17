@@ -52,6 +52,9 @@
       <button class="btn-secondary" onclick="window.location.href='find-device.html'">
         <i class="fa-solid fa-magnifying-glass-location"></i> Find Lost Device
       </button>
+      <button class="btn-sos" onclick="sendSOS()">
+        <i class="fa-solid fa-bell fa-beat"></i> SOS Emergency
+      </button>
     </div>
   </div>
   <div class="hero-stats">
@@ -184,5 +187,29 @@
     });
   }
 </script>
+
+<!-- SOS MODAL -->
+<div class="sos-modal" id="sosModal">
+  <div class="sos-box">
+    <h2><i class="fa-solid fa-bell fa-beat"></i> SOS Emergency Alert</h2>
+    <p style="color:var(--text-muted);margin-bottom:16px;font-size:14px">
+      Family member ka number save karo — SOS click karne pe unhe aapki location automatically jaayegi.
+    </p>
+    <input type="text" id="sosName" placeholder="👤 Family Member Name (e.g. Mom)" />
+    <input type="tel" id="sosPhone" placeholder="📱 Their WhatsApp Number (+91 98765 43210)" />
+    <div class="sos-actions">
+      <button class="btn-primary" onclick="saveSOS()" style="flex:1">
+        <i class="fa-solid fa-save"></i> Save & Send SOS
+      </button>
+      <button class="btn-secondary" onclick="closeSOS()">
+        <i class="fa-solid fa-xmark"></i> Cancel
+      </button>
+    </div>
+    <div class="find-note" style="margin-top:14px">
+      <i class="fa-solid fa-circle-info"></i>
+      Location automatically track hogi aur WhatsApp message jaayega.
+    </div>
+  </div>
+</div>
 </body>
 </html>

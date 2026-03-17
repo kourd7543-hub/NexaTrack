@@ -374,6 +374,65 @@ async function saveLocationToServer(lat, lon, accuracy, time) {
     console.error('Save error:', e);
   }
 }
+
+// ========== SOS EMERGENCY ==========
+function sendSOS() {
+  // Check if SOS contact already saved
+  const saved = localStorage.getItem('nx_sos_contact');
+  if (saved) {
+    const contact = JSON.parse(saved);
+    document.getElementById('sosName').value  = contact.name  || '';
+    document.getElementById('sosPhone').value = contact.phone || '';
+  }
+  document.getElementById('sosModal').classList.add('active');
+}
+
+function saveSOS() {
+  const name  = document.getElementById('sosName').value.trim();
+  const phone = document.getElementById('sosPhone').value.trim();
+
+  if (!name || !phone) {
+    showToast('Name aur phone number zaroori hai!', 'error');
+    return;
+  }
+
+  // Save contact
+  localStorage.setItem('nx_sos_contact', JSON.stringify({ name, phone }));
+
+  // Get location and send
+  if (!navigator.geolocation) {
+    showToast('Geolocation supported nahi hai!', 'error');
+    return;
+  }
+
+  showToast('Location dhundh raha hoon...', 'info');
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const lat = pos.coords.latitude.toFixed(6);
+      const lon = pos.coords.longitude.toFixed(6);
+      const mapsLink = `https://maps.google.com/?q=${lat},${lon}`;
+      const cleaned = phone.replace(/[\s\-\(\)\+]/g, '');
+      const waNum = cleaned.startsWith('91') ? cleaned : `91${cleaned}`;
+
+      const msg = encodeURIComponent(
+        `🚨 SOS EMERGENCY ALERT!\n\n${name}, I need help!\n\n📍 My current location:\n${mapsLink}\n\n— Sent via NexaTrack`
+      );
+
+      window.open(`https://wa.me/${waNum}?text=${msg}`, '_blank');
+      closeSOS();
+      showToast(`SOS sent to ${name}! 🚨`, 'success');
+    },
+    () => {
+      showToast('Location nahi mili. Please allow location access.', 'error');
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+
+function closeSOS() {
+  document.getElementById('sosModal').classList.remove('active');
+}
 // ========== TOAST ==========
 function showToast(msg, type = 'info') {
   const toast = document.getElementById('toast');
