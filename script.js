@@ -433,6 +433,56 @@ function saveSOS() {
 function closeSOS() {
   document.getElementById('sosModal').classList.remove('active');
 }
+
+// ========== DISTANCE & ROUTE ==========
+function showDistanceAndRoute(deviceLat, deviceLon) {
+  if (!navigator.geolocation) return;
+
+  navigator.geolocation.getCurrentPosition((pos) => {
+    const myLat = pos.coords.latitude;
+    const myLon = pos.coords.longitude;
+
+    // Distance calculate karo
+    const R = 6371;
+    const dLat = (deviceLat - myLat) * Math.PI / 180;
+    const dLon = (deviceLon - myLon) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(myLat * Math.PI / 180) * Math.cos(deviceLat * Math.PI / 180) *
+              Math.sin(dLon/2) * Math.sin(dLon/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const distance = R * c;
+
+    const distText = distance < 1
+      ? `${Math.round(distance * 1000)} meters`
+      : `${distance.toFixed(2)} km`;
+
+    // Distance box show karo
+    const box = document.getElementById('distanceBox');
+    if (box) {
+      box.style.display = 'block';
+      box.innerHTML = `
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:8px">
+            <i class="fa-solid fa-ruler" style="color:var(--accent);font-size:20px"></i>
+            <div>
+              <div style="font-family:var(--font-display);font-size:11px;color:var(--text-muted);letter-spacing:1px">DISTANCE</div>
+              <div style="font-size:20px;font-weight:700;color:var(--accent)">${distText}</div>
+            </div>
+          </div>
+          <a href="https://www.google.com/maps/dir/?api=1&origin=${myLat},${myLon}&destination=${deviceLat},${deviceLon}&travelmode=driving"
+             target="_blank" class="btn-primary" style="text-decoration:none">
+            <i class="fa-solid fa-diamond-turn-right"></i> Get Route
+          </a>
+          <a href="https://www.google.com/maps/dir/?api=1&origin=${myLat},${myLon}&destination=${deviceLat},${deviceLon}&travelmode=walking"
+             target="_blank" class="btn-secondary" style="text-decoration:none">
+            <i class="fa-solid fa-person-walking"></i> Walking Route
+          </a>
+        </div>
+      `;
+    }
+  }, () => {}, { enableHighAccuracy: true, timeout: 8000 });
+}
+
 // ========== TOAST ==========
 function showToast(msg, type = 'info') {
   const toast = document.getElementById('toast');

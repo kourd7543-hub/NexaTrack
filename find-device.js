@@ -313,7 +313,7 @@ function showLiveResult(data) {
     </div>
   `;
   showOnLeaflet(lat, lon);
-  document.getElementById('recoveryMap').scrollIntoView({ behavior: 'smooth' });
+  showDistanceAndRoute(lat, lon);
   showToast('🎯 Live location received!', 'success');
 }
 
