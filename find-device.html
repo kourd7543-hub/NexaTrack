@@ -8,59 +8,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-logo">NexaTrack</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="live-tracking.html">Live Tracking</a></li>
-            <li><a href="interactive-map.html">Globe View</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="container main-content">
-        <header class="hero-section">
-            <h1 class="glow-text">Device Recovery</h1>
-            <p>Locate your lost device using Nexa-Intelligence</p>
+    <div class="container">
+        <header>
+            <h1>Find Device</h1>
+            <p>Locate your lost device easily</p>
         </header>
 
-        <div class="grid-layout">
-            <div class="glass-card">
-                <h2><i class="fa-solid fa-robot"></i> Anti-Theft Activation</h2>
-                <div class="status-badge" id="autoStatus">Status: <span class="offline">Inactive</span></div>
-                <p>Activate this before your device is lost to enable silent background tracking.</p>
-                
-                <div class="legal-box">
-                    <i class="fa-solid fa-shield-check"></i> Legal: Self-Tracking Enabled
-                </div>
-
-                <div class="btn-flex">
-                    <button class="btn-neon" onclick="startNexaAutomation()">Activate</button>
-                    <button class="btn-outline" onclick="stopNexaAutomation()">Stop</button>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <h2><i class="fa-solid fa-search-location"></i> Locate Device</h2>
-                <p>Enter the Device Code to pinpoint its current location.</p>
-                <div class="input-wrapper">
-                    <input type="text" id="searchCode" placeholder="Enter NT-Code...">
-                    <button class="btn-neon-square" onclick="locateDevice()"><i class="fa-solid fa-crosshairs"></i></button>
-                </div>
+        <div class="find-card">
+            <h2>Method 1: Track via Phone Number</h2>
+            <div class="input-group">
+                <input type="text" id="phoneNumber" placeholder="Enter Phone Number">
+                <button class="btn-primary" onclick="trackViaPhone()">Track Now</button>
             </div>
         </div>
 
-        <div id="resultArea" class="glass-card full-width" style="display:none; margin-top: 30px;">
-            <div class="result-header">
-                <h3><i class="fa-solid fa-satellite"></i> Real-time Feed</h3>
-                <span id="timeInfo">Last seen: Just now</span>
+        <div class="find-card">
+            <h2>Method 2: System Automation (Tasker)</h2>
+            <p>Enable background tracking for this device.</p>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="startNexaAutomation()">Activate Auto</button>
+                <button class="btn-secondary" onclick="stopNexaAutomation()">Stop</button>
             </div>
-            <div id="mapFrame" class="map-container"></div>
-            <a id="googleMapsLink" target="_blank" class="btn-neon-wide">View on Google Maps</a>
         </div>
+
+        <div id="toast" class="toast"></div>
     </div>
 
-    <div id="toast" class="toast"></div>
     <script src="find-device.js"></script>
 </body>
 </html>

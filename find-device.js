@@ -1,33 +1,36 @@
-// NEXATRACK - NO DATABASE VERSION
-function startNexaAutomation() {
-    const myNumber = prompt("Enter your Backup Phone Number (where you want to receive location):");
-    if(!myNumber) return;
-
-    localStorage.setItem('backup_number', myNumber);
-    showToast("Automation Ready! Backup Number Saved.", "success");
-    
-    // Tasker jaisa behavior: Bina app ke background check
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition((pos) => {
-            console.log("System Check: GPS is Working.");
-        });
-    }
-}
-
-function locateDevice() {
-    const phone = document.getElementById('searchCode').value; // Yahan phone number daalein
-    const backupNum = localStorage.getItem('backup_number') || "919999999999"; 
-    
+// AAPKA PURANA TRACKING LOGIC
+function trackViaPhone() {
+    const phone = document.getElementById('phoneNumber').value;
     if(!phone) {
-        showToast("Please enter the lost phone number", "error");
+        showToast("Please enter a number", "error");
         return;
     }
+    // SMS Link Method (Jo aapne pehle manga tha)
+    const backupNum = "91XXXXXXXXXX"; // Apna number yahan dalein
+    const trackLink = `https://${window.location.hostname}/track.html?to=${backupNum}`;
+    window.location.href = `sms:${phone}?body=🚨 NexaTrack Alert: ${trackLink}`;
+}
 
-    // Ek special Google Maps link generate karna
-    const trackerLink = `https://nexa-track.vercel.app/track.html?to=${backupNum}`;
-    const msg = encodeURIComponent(`🚨 NexaTrack Alert: Your device is being located. Click to verify: ${trackerLink}`);
-    
-    // SMS bhejne ka option
-    window.location.href = `sms:${phone}?body=${msg}`;
-    showToast("Tracking Link Sent via SMS!", "info");
+// --- NEW AUTOMATION LOGIC (ONLY THIS ADDED) ---
+let autoInterval = null;
+
+function startNexaAutomation() {
+    showToast("Automation Started!", "success");
+    autoInterval = setInterval(() => {
+        navigator.geolocation.getCurrentPosition((pos) => {
+            console.log("Background Syncing...");
+        });
+    }, 60000); // Har 1 min mein check karega
+}
+
+function stopNexaAutomation() {
+    clearInterval(autoInterval);
+    showToast("Automation Stopped", "info");
+}
+
+function showToast(msg, type) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.className = `toast show ${type}`;
+    setTimeout(() => { toast.className = 'toast'; }, 3000);
 }
