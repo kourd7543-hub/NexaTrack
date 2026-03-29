@@ -8,52 +8,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><i class="fa-solid fa-shield-halved"></i> NexaTrack</h1>
-            <p>Advanced Anti-Theft & Recovery System</p>
+    <nav class="navbar">
+        <div class="nav-logo">NexaTrack</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="live-tracking.html">Live Tracking</a></li>
+            <li><a href="interactive-map.html">Globe View</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container main-content">
+        <header class="hero-section">
+            <h1 class="glow-text">Device Recovery</h1>
+            <p>Locate your lost device using Nexa-Intelligence</p>
         </header>
 
-        <div class="find-card">
-            <h2><i class="fa-solid fa-robot"></i> Device Automation</h2>
-            <div class="legal-notice">
-                <i class="fa-solid fa-circle-info"></i> 
-                <strong>Legal Alert:</strong> Yeh system sirf aapke personal use ke liye hai. Ise ON karne se aapka phone background mein location update karega.
-            </div>
-            
-            <div id="automationDisplay" class="status-box">
-                Status: <span id="autoStatusText" style="color:#ff4d6d">● OFFLINE</span>
+        <div class="grid-layout">
+            <div class="glass-card">
+                <h2><i class="fa-solid fa-robot"></i> Anti-Theft Activation</h2>
+                <div class="status-badge" id="autoStatus">Status: <span class="offline">Inactive</span></div>
+                <p>Activate this before your device is lost to enable silent background tracking.</p>
+                
+                <div class="legal-box">
+                    <i class="fa-solid fa-shield-check"></i> Legal: Self-Tracking Enabled
+                </div>
+
+                <div class="btn-flex">
+                    <button class="btn-neon" onclick="startNexaAutomation()">Activate</button>
+                    <button class="btn-outline" onclick="stopNexaAutomation()">Stop</button>
+                </div>
             </div>
 
-            <div class="btn-group">
-                <button class="btn-primary" onclick="startNexaAutomation()">
-                    <i class="fa-solid fa-play"></i> Activate Auto-Track
-                </button>
-                <button class="btn-secondary" onclick="stopNexaAutomation()">
-                    <i class="fa-solid fa-stop"></i> Stop
-                </button>
-            </div>
-        </div>
-
-        <div class="find-card">
-            <h2><i class="fa-solid fa-location-crosshairs"></i> Find Lost Device</h2>
-            <p>Enter your unique Device Code to see the live location on map.</p>
-            <div class="input-group">
-                <input type="text" id="searchCode" placeholder="Enter Code (e.g., NT-ABCD)">
-                <button class="btn-primary" onclick="locateDevice()">Locate Now</button>
+            <div class="glass-card">
+                <h2><i class="fa-solid fa-search-location"></i> Locate Device</h2>
+                <p>Enter the Device Code to pinpoint its current location.</p>
+                <div class="input-wrapper">
+                    <input type="text" id="searchCode" placeholder="Enter NT-Code...">
+                    <button class="btn-neon-square" onclick="locateDevice()"><i class="fa-solid fa-crosshairs"></i></button>
+                </div>
             </div>
         </div>
 
-        <div id="resultArea" class="find-card" style="display:none;">
-            <h3>Live Location Found!</h3>
-            <p id="timeInfo"></p>
-            <div id="mapFrame" style="width:100%; height:300px; border-radius:10px; margin-top:10px;"></div>
-            <a id="googleMapsLink" target="_blank" class="btn-primary" style="margin-top:10px; display:block; text-align:center;">Open in Google Maps</a>
+        <div id="resultArea" class="glass-card full-width" style="display:none; margin-top: 30px;">
+            <div class="result-header">
+                <h3><i class="fa-solid fa-satellite"></i> Real-time Feed</h3>
+                <span id="timeInfo">Last seen: Just now</span>
+            </div>
+            <div id="mapFrame" class="map-container"></div>
+            <a id="googleMapsLink" target="_blank" class="btn-neon-wide">View on Google Maps</a>
         </div>
-
-        <div id="toast" class="toast"></div>
     </div>
 
+    <div id="toast" class="toast"></div>
     <script src="find-device.js"></script>
 </body>
 </html>

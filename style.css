@@ -1,225 +1,80 @@
-/* ========== NEXATRACK — MAIN STYLE SHEET (FINAL TECH-LOOK) ========== */
-
 :root {
-  --bg-dark: #0a0a0c;
-  --bg-card: #141417;
-  --accent: #00f2fe; /* Neon Blue */
-  --accent2: #4facfe;
-  --text-main: #ffffff;
-  --text-muted: #888888;
-  --error: #ff4d6d;
-  --success: #00ff00;
-  --glitch-filter: drop-shadow(0 0 5px var(--accent));
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Roboto, sans-serif;
+    --accent: #00f2fe;
+    --accent2: #4facfe;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-main);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow-x: hidden;
+    background: radial-gradient(circle at top, #1a1a2e, #0a0a0c);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
 }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  padding: 20px;
+/* Navbar Style */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 40px;
+.nav-logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: white; text-decoration: none; font-size: 14px; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
+
+/* Glass Card Style */
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
-header h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  background: linear-gradient(45deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: var(--glitch-filter);
-  letter-spacing: 1px;
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 50px;
 }
 
-header p {
-  color: var(--text-muted);
-  font-size: 1rem;
-  margin-top: 10px;
+.glow-text {
+    font-size: 3.5rem;
+    background: linear-gradient(to right, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
 }
 
-/* Card Styling (Pehle jaisa structure) */
-.find-card {
-  background-color: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 25px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  position: relative;
+/* Buttons */
+.btn-neon {
+    background: linear-gradient(45deg, var(--accent), var(--accent2));
+    border: none; padding: 12px 25px; border-radius: 10px;
+    font-weight: bold; cursor: pointer; transition: 0.3s;
 }
 
-.find-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
+.btn-neon:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--accent); }
+
+.status-badge { font-size: 12px; margin-bottom: 10px; }
+.offline { color: #ff4d6d; }
+.online { color: #00ff00; }
+
+.map-container {
+    height: 350px; width: 100%;
+    border-radius: 15px; background: #000;
+    margin: 20px 0; border: 1px solid var(--accent);
 }
 
-.find-card h2 {
-  font-size: 1.5rem;
-  color: var(--accent);
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* Response for Mobile */
+@media (max-width: 768px) {
+    .grid-layout { grid-template-columns: 1fr; }
 }
-
-.find-card h2 i {
-  color: var(--accent2);
-}
-
-.find-card p {
-  color: var(--text-muted);
-  font-size: 13px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-/* Legal Notice Styling (Naya) */
-.legal-notice {
-  background: rgba(255, 193, 7, 0.05);
-  border-left: 3px solid #ffc107;
-  padding: 10px 15px;
-  font-size: 11px;
-  color: #ddd;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: start;
-  gap: 8px;
-}
-
-/* Status Box */
-.status-box {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
-  color: var(--text-muted);
-}
-
-/* Input Fields (Dark Theme) */
-.input-group {
-  display: flex;
-  gap: 10px;
-}
-
-input[type="text"] {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 12px 15px;
-  border-radius: 8px;
-  color: var(--text-main);
-  font-size: 14px;
-  transition: border-color 0.3s ease;
-}
-
-input[type="text"]:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-/* Buttons (Pehle jaisa neon look) */
-.btn-primary {
-  background: linear-gradient(45deg, var(--accent2), var(--accent));
-  color: #000;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-primary:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text-main);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.btn-group {
-  display: flex;
-  gap: 10px;
-}
-
-/* Map Area (Full Width) */
-#resultArea {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#resultArea h3 {
-  color: var(--success);
-  margin-bottom: 5px;
-}
-
-#mapFrame {
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
-}
-
-/* Toast styling (purana) */
-.toast {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background-color: var(--bg-card);
-  padding: 12px 25px;
-  border-radius: 50px;
-  font-size: 12px;
-  z-index: 1000;
-  opacity: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
-
-.toast.success { border-left: 3px solid var(--success); }
-.toast.error { border-left: 3px solid var(--error); }
-.toast.info { border-left: 3px solid var(--accent); }
