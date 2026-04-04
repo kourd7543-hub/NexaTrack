@@ -13,9 +13,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  max-width: 1000px;
-  margin: 0 auto 40px;
+  max-width: 960px;
+  margin: 0 auto 60px;
   padding: 0 30px;
+  position: relative;
+  z-index: 1;
 }
 .fd-card {
   background: var(--card-bg);
@@ -24,8 +26,6 @@
   padding: 28px;
   backdrop-filter: blur(20px);
   transition: border-color 0.3s;
-  position: relative;
-  z-index: 1;
 }
 .fd-card:hover { border-color: rgba(26,110,245,0.5); }
 .fd-card.full { grid-column: span 2; }
@@ -61,125 +61,7 @@
 }
 .fd-input input:focus { border-color: var(--primary); }
 .fd-input input::placeholder { color: var(--text-muted); }
-
-/* Tasker config box */
-.tasker-section {
-  max-width: 1000px;
-  margin: 0 auto 40px;
-  padding: 0 30px;
-  position: relative;
-  z-index: 1;
-}
-.tasker-banner {
-  background: linear-gradient(135deg, rgba(26,110,245,0.12), rgba(0,212,255,0.06));
-  border: 1px solid rgba(26,110,245,0.3);
-  border-radius: 14px;
-  padding: 28px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.tasker-banner h2 {
-  font-family: var(--font-display);
-  font-size: 16px;
-  color: white;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-.tasker-banner p { color: var(--text-muted); font-size: 13px; line-height: 1.7; max-width: 650px; margin: 0 auto; }
-.config-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.config-box {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 20px;
-}
-.config-box label {
-  display: block;
-  font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  font-family: var(--font-display);
-}
-.code-line {
-  background: rgba(0,0,0,0.4);
-  border: 1px solid rgba(26,110,245,0.2);
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-family: monospace;
-  font-size: 12px;
-  color: var(--accent2);
-  line-height: 1.7;
-  word-break: break-all;
-  position: relative;
-}
-.copy-btn {
-  display: block;
-  margin-top: 10px;
-  background: rgba(26,110,245,0.15);
-  border: 1px solid rgba(26,110,245,0.3);
-  color: var(--accent);
-  padding: 7px 0;
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-weight: 600;
-  width: 100%;
-  transition: all 0.3s;
-  letter-spacing: 1px;
-}
-.copy-btn:hover { background: rgba(26,110,245,0.3); }
-.steps-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 16px;
-  justify-content: center;
-}
-.step-chip {
-  background: rgba(0,212,255,0.08);
-  border: 1px solid rgba(0,212,255,0.2);
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 12px;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-  min-width: 160px;
-}
-.step-chip i { color: var(--accent); flex-shrink: 0; }
-.info-note {
-  background: rgba(0,212,255,0.06);
-  border: 1px solid rgba(0,212,255,0.15);
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 16px;
-  line-height: 1.6;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-.info-note i { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
-.result-area {
-  margin-top: 16px;
-  min-height: 20px;
-}
-.no-data {
-  text-align: center;
-  color: var(--text-muted);
-  padding: 20px;
-  font-size: 13px;
-}
+.result-area { margin-top: 14px; }
 .result-box {
   background: var(--glass);
   border: 1px solid var(--card-border);
@@ -188,12 +70,13 @@
 }
 .result-box h4 {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 12px;
   color: var(--success);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
+  letter-spacing: 1px;
 }
 .result-row {
   display: flex;
@@ -202,6 +85,7 @@
   border-bottom: 1px solid rgba(255,255,255,0.04);
   font-size: 13px;
 }
+.result-row:last-of-type { border-bottom: none; }
 .result-row span { color: var(--text-muted); }
 .result-row strong { color: white; }
 .result-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
@@ -219,11 +103,16 @@
   transition: 0.3s;
 }
 .wa-btn:hover { background: #1da851; }
+.no-data {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 24px 16px;
+  font-size: 13px;
+  line-height: 1.7;
+}
 @media (max-width: 768px) {
   .fd-grid { grid-template-columns: 1fr; padding: 0 16px; }
   .fd-card.full { grid-column: span 1; }
-  .config-grid { grid-template-columns: 1fr; }
-  .tasker-section { padding: 0 16px; }
 }
 </style>
 </head>
@@ -252,70 +141,16 @@
 <section class="about-hero">
   <div class="hero-badge"><i class="fa-solid fa-magnifying-glass-location"></i> DEVICE RECOVERY</div>
   <h1>Find Lost Device</h1>
-  <p>Track using phone number, device code, or auto-tracking if pre-configured</p>
+  <p>Phone number se request bhejon ya device code se location dekho</p>
 </section>
 
-<!-- ===== TASKER AUTO-TRACK CONFIG ===== -->
-<div class="tasker-section">
-  <div class="tasker-banner">
-    <h2><i class="fa-solid fa-robot"></i> &nbsp;Auto-Track — Setup Before You Lose Your Phone</h2>
-    <p>
-      Install <strong style="color:var(--accent)">Tasker</strong> on your Android phone and add the config below.
-      If your phone ever gets stolen or lost, it will silently send its GPS location to NexaTrack every few minutes —
-      even if the SIM is changed.
-    </p>
-    <div class="steps-row">
-      <div class="step-chip"><i class="fa-solid fa-download"></i> Install Tasker from Play Store</div>
-      <div class="step-chip"><i class="fa-solid fa-plus"></i> New Task → HTTP POST action</div>
-      <div class="step-chip"><i class="fa-solid fa-paste"></i> Paste URL + Body below</div>
-      <div class="step-chip"><i class="fa-solid fa-clock"></i> Profile → Time → Every 15 min</div>
-    </div>
-  </div>
-
-  <div class="config-grid">
-    <div class="config-box">
-      <label>HTTP POST — URL</label>
-      <div class="code-line" id="taskerUrl">https://nexa-track.vercel.app/api/location</div>
-      <button class="copy-btn" onclick="copyText('taskerUrl', this)">
-        <i class="fa-solid fa-copy"></i> &nbsp;Copy URL
-      </button>
-    </div>
-    <div class="config-box">
-      <label>Request Body — JSON</label>
-      <div class="code-line" id="taskerBody">
-        {<br>
-        &nbsp;"lat": "%LOC".split(",")[0],<br>
-        &nbsp;"lon": "%LOC".split(",")[1],<br>
-        &nbsp;"accuracy": "%LOCACC",<br>
-        &nbsp;"time": "%DATE %TIME",<br>
-        &nbsp;"device": "%DEVID",<br>
-        &nbsp;"link": "https://maps.google.com/?q=%LOC"<br>
-        }
-      </div>
-      <button class="copy-btn" onclick="copyTaskerBody(this)">
-        <i class="fa-solid fa-copy"></i> &nbsp;Copy Body
-      </button>
-    </div>
-  </div>
-
-  <div class="info-note">
-    <i class="fa-solid fa-circle-info"></i>
-    <span>
-      Content-Type header set karo: <strong style="color:var(--accent)">application/json</strong> &nbsp;|&nbsp;
-      Also add <strong style="color:var(--accent)">Get Location</strong> action before HTTP Request, Source: Any, Timeout: 30s &nbsp;|&nbsp;
-      Battery optimization: Tasker ke liye <strong style="color:var(--accent)">Unrestricted</strong> set karo
-    </span>
-  </div>
-</div>
-
-<!-- ===== QUICK FIND ===== -->
 <div class="fd-grid">
 
-  <!-- Phone Number -->
+  <!-- Card 1: Phone Number -->
   <div class="fd-card">
     <div class="fd-icon blue"><i class="fa-solid fa-phone"></i></div>
-    <h3>Find by Phone Number</h3>
-    <p>Lost device ke number pe WhatsApp/SMS se location request bhejna. Koi link kholenga toh location milegi.</p>
+    <h3>Phone Number Se Dhundho</h3>
+    <p>Lost device ke number pe WhatsApp ya SMS se location request bhejna. Jab koi link open karega, location share ho jayegi.</p>
     <div class="fd-input">
       <input type="tel" id="phoneInput" placeholder="+91 98765 43210" />
       <button class="btn-primary" onclick="findByPhone()">
@@ -325,25 +160,25 @@
     <div class="result-area" id="phoneResult"></div>
   </div>
 
-  <!-- Device Code -->
+  <!-- Card 2: Device Code -->
   <div class="fd-card">
     <div class="fd-icon green"><i class="fa-solid fa-link"></i></div>
-    <h3>Find by Device Code</h3>
-    <p>Pehle se generated TS-XXXXX code enter karo ya auto-track se location dekho.</p>
+    <h3>Device Code Se Dhundho</h3>
+    <p>Pehle se generated TS-XXXXX code enter karo. Yeh code tab banta hai jab home page pe "Share Location" click kiya ho.</p>
     <div class="fd-input">
-      <input type="text" id="codeInput" placeholder="Code e.g. TS-48291" />
+      <input type="text" id="codeInput" placeholder="e.g. TS-48291" />
       <button class="btn-primary" onclick="findByCode()">
-        <i class="fa-solid fa-search"></i> Track
+        <i class="fa-solid fa-search"></i> Track Device
       </button>
     </div>
     <div class="result-area" id="codeResult"></div>
   </div>
 
-  <!-- Live / Last Known -->
+  <!-- Card 3: Live / Last Known -->
   <div class="fd-card full">
     <div class="fd-icon red"><i class="fa-solid fa-satellite-dish"></i></div>
     <h3>Live Location / Last Known</h3>
-    <p>Agar Tasker setup tha ya device ne location share ki thi — yahan automatically dikhegi.</p>
+    <p>Agar device ne pehle location share ki thi ya live tracking chal rahi hai toh yahan dikhegi.</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
       <button class="btn-primary" onclick="watchLive()">
         <i class="fa-solid fa-satellite-dish fa-beat"></i> Watch Live
@@ -351,11 +186,15 @@
       <button class="btn-secondary" onclick="loadLast()">
         <i class="fa-solid fa-clock-rotate-left"></i> Last Known
       </button>
-      <button class="btn-secondary" onclick="stopWatch()" id="stopBtn" style="display:none">
+      <button class="btn-secondary" id="stopBtn" onclick="stopWatch()" style="display:none">
         <i class="fa-solid fa-stop"></i> Stop
       </button>
     </div>
-    <div id="liveBox" class="no-data">No location data yet.</div>
+    <div id="liveBox" class="no-data">
+      <i class="fa-solid fa-satellite-dish" style="font-size:1.4rem;color:var(--text-muted);display:block;margin-bottom:10px"></i>
+      Abhi koi location data nahi hai.<br>
+      <small>Watch Live ya Last Known click karo.</small>
+    </div>
     <div id="liveMap" style="display:none;height:320px;margin-top:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(26,110,245,0.3)"></div>
   </div>
 

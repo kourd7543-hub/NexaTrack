@@ -7,37 +7,22 @@ function showToast(msg, type = 'info') {
   setTimeout(() => t.className = 'toast', 3500);
 }
 
-// Copy URL
-function copyText(id, btn) {
-  const text = document.getElementById(id).innerText.trim();
-  navigator.clipboard.writeText(text).then(() => {
-    btn.innerHTML = '<i class="fa-solid fa-check"></i> &nbsp;Copied!';
-    setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-copy"></i> &nbsp;Copy URL', 2000);
-  });
-}
-
-// Copy Tasker JSON body
-function copyTaskerBody(btn) {
-  const body = `{"lat": "%LOC".split(",")[0], "lon": "%LOC".split(",")[1], "accuracy": "%LOCACC", "time": "%DATE %TIME", "device": "%DEVID", "link": "https://maps.google.com/?q=%LOC"}`;
-  navigator.clipboard.writeText(body).then(() => {
-    btn.innerHTML = '<i class="fa-solid fa-check"></i> &nbsp;Copied!';
-    setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-copy"></i> &nbsp;Copy Body', 2000);
-  });
-}
-
-// Find by phone
+// ===== FIND BY PHONE =====
 function findByPhone() {
   const phone = document.getElementById('phoneInput').value.trim();
-  if (!phone || phone.replace(/[\s\-\(\)\+]/g, '').length < 10) {
-    showToast('Valid phone number daalo!', 'error'); return;
-  }
   const cleaned = phone.replace(/[\s\-\(\)\+]/g, '');
+  if (!phone || cleaned.length < 10) {
+    showToast('Valid phone number daalo!', 'error');
+    return;
+  }
   const waNum = cleaned.startsWith('91') ? cleaned : '91' + cleaned;
   const link = 'https://nexa-track.vercel.app/index.html?track=1';
-  const msg = encodeURIComponent(`🔍 NexaTrack se location request hai.\n\nApni location share karne ke liye:\n${link}\n\n⚠️ Sirf tab karo agar aap is request ko jaante ho.`);
+  const msg = encodeURIComponent(
+    `🔍 NexaTrack se location request hai.\n\nApni location share karne ke liye yeh link kholo:\n${link}\n\n⚠️ Sirf tab karo agar aap is request ko jaante ho.`
+  );
   document.getElementById('phoneResult').innerHTML = `
-    <div class="result-box" style="margin-top:14px">
-      <h4><i class="fa-solid fa-circle-check"></i> Send to ${phone}</h4>
+    <div class="result-box">
+      <h4><i class="fa-solid fa-circle-check"></i> REQUEST READY — ${phone}</h4>
       <div class="result-actions">
         <a href="https://wa.me/${waNum}?text=${msg}" target="_blank" class="wa-btn">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp
@@ -51,26 +36,18 @@ function findByPhone() {
   showToast('WhatsApp ya SMS choose karo!', 'success');
 }
 
-// Find by code
+// ===== FIND BY CODE =====
 function findByCode() {
   const raw = document.getElementById('codeInput').value.trim().toUpperCase();
   if (!raw) { showToast('Code daalo!', 'error'); return; }
   const local = localStorage.getItem('ts_shared_' + raw);
   if (local) {
-    showResult(JSON.parse(local), 'codeResult');
-    return;
-  }
-  showToast(`"${raw}" code nahi mila.`, 'error');
-}
-
-function showResult(data, targetId) {
-  const lat = parseFloat(data.lat);
-  const lon = parseFloat(data.lon);
-  const el = document.getElementById(targetId);
-  if (el) {
-    el.innerHTML = `
-      <div class="result-box" style="margin-top:14px">
-        <h4><i class="fa-solid fa-circle-check"></i> Location Found!</h4>
+    const data = JSON.parse(local);
+    const lat = parseFloat(data.lat);
+    const lon = parseFloat(data.lon);
+    document.getElementById('codeResult').innerHTML = `
+      <div class="result-box">
+        <h4><i class="fa-solid fa-circle-check"></i> LOCATION FOUND</h4>
         <div class="result-row"><span>Latitude</span><strong>${lat.toFixed(6)}</strong></div>
         <div class="result-row"><span>Longitude</span><strong>${lon.toFixed(6)}</strong></div>
         <div class="result-row"><span>Accuracy</span><strong>${data.accuracy}m</strong></div>
@@ -82,20 +59,22 @@ function showResult(data, targetId) {
         </div>
       </div>
     `;
+    showOnMap(lat, lon);
+    showToast('Location mil gayi!', 'success');
+    return;
   }
-  showOnMap(lat, lon);
-  showToast('Location mil gayi!', 'success');
+  showToast(`"${raw}" code nahi mila.`, 'error');
 }
 
-// Watch live
+// ===== WATCH LIVE =====
 let watchInterval = null;
 
-async function watchLive() {
+function watchLive() {
   document.getElementById('stopBtn').style.display = 'inline-flex';
   document.getElementById('liveBox').innerHTML = `
-    <div style="text-align:center;padding:20px;color:var(--text-muted)">
+    <div class="no-data">
       <i class="fa-solid fa-satellite-dish fa-beat" style="color:var(--accent);font-size:1.5rem;display:block;margin-bottom:10px"></i>
-      <strong style="color:var(--accent)">Signal ka wait hai...</strong><br>
+      <strong style="color:var(--accent)">Signal ka intezaar hai...</strong><br>
       <small>Jaise hi device location bhejega, yahan dikhega</small>
     </div>
   `;
@@ -112,6 +91,7 @@ async function watchLive() {
           clearInterval(watchInterval);
           document.getElementById('stopBtn').style.display = 'none';
           showLiveData(data);
+          showToast('🎯 Live location aa gayi!', 'success');
         }
       }
     } catch(e) {}
@@ -130,8 +110,14 @@ function stopWatch() {
   showToast('Watch band kar di.', 'info');
 }
 
+// ===== LOAD LAST KNOWN =====
 async function loadLast() {
-  document.getElementById('liveBox').innerHTML = `<div class="no-data"><i class="fa-solid fa-spinner fa-spin"></i> Dhundh raha hun...</div>`;
+  document.getElementById('liveBox').innerHTML = `
+    <div class="no-data">
+      <i class="fa-solid fa-spinner fa-spin" style="color:var(--accent);font-size:1.2rem;display:block;margin-bottom:8px"></i>
+      Dhundh raha hun...
+    </div>
+  `;
 
   try {
     const res = await fetch(API_URL);
@@ -146,19 +132,20 @@ async function loadLast() {
 
   document.getElementById('liveBox').innerHTML = `
     <div class="no-data">
-      <i class="fa-solid fa-triangle-exclamation" style="color:var(--danger)"></i><br><br>
+      <i class="fa-solid fa-triangle-exclamation" style="color:var(--danger);font-size:1.3rem;display:block;margin-bottom:10px"></i>
       Koi saved location nahi mili.<br>
-      <small>Tasker setup karo ya home page se "Track My Location" click karo.</small>
+      <small>Home page pe "Track My Location" click karo aur "Share Location" karo — tab yahan dikhega.</small>
     </div>
   `;
 }
 
+// ===== SHOW LIVE DATA =====
 function showLiveData(data) {
   const lat = parseFloat(data.lat);
   const lon = parseFloat(data.lon);
   document.getElementById('liveBox').innerHTML = `
     <div class="result-box">
-      <h4><i class="fa-solid fa-circle-check"></i> Location Mili!</h4>
+      <h4><i class="fa-solid fa-circle-check"></i> LOCATION MILI</h4>
       <div class="result-row"><span>Latitude</span><strong>${lat.toFixed(6)}</strong></div>
       <div class="result-row"><span>Longitude</span><strong>${lon.toFixed(6)}</strong></div>
       <div class="result-row"><span>Accuracy</span><strong>${data.accuracy}m</strong></div>
@@ -174,10 +161,9 @@ function showLiveData(data) {
     </div>
   `;
   showOnMap(lat, lon);
-  showToast('Location aa gayi!', 'success');
 }
 
-// Leaflet map
+// ===== LEAFLET MAP =====
 let lMap = null;
 
 function showOnMap(lat, lon) {
@@ -185,12 +171,16 @@ function showOnMap(lat, lon) {
   mapDiv.style.display = 'block';
   if (lMap) { lMap.setView([lat, lon], 16); return; }
   lMap = L.map('liveMap').setView([lat, lon], 16);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(lMap);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(lMap);
   const icon = L.divIcon({
     className: '',
     html: `<div style="width:38px;height:38px;background:linear-gradient(135deg,#ff4d6d,#c70033);border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(255,77,109,0.8);">
-      <i class="fa-solid fa-mobile-screen-button" style="transform:rotate(45deg);color:white;font-size:15px"></i></div>`,
-    iconSize: [38, 38], iconAnchor: [19, 38]
+      <i class="fa-solid fa-mobile-screen-button" style="transform:rotate(45deg);color:white;font-size:15px"></i>
+    </div>`,
+    iconSize: [38, 38],
+    iconAnchor: [19, 38]
   });
   L.marker([lat, lon], { icon }).addTo(lMap)
     .bindPopup(`<b style="color:#ff4d6d">Lost Device</b><br><small>${lat.toFixed(5)}, ${lon.toFixed(5)}</small>`)
