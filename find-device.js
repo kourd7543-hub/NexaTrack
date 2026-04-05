@@ -18,8 +18,8 @@ function findByPhone() {
   const waNum = cleaned.startsWith('91') ? cleaned : '91' + cleaned;
   const link = 'https://nexa-track.vercel.app/index.html?track=1';
   const msg = encodeURIComponent(
-    `🔍 NexaTrack se location request hai.\n\nApni location share karne ke liye yeh link kholo:\n${link}\n\n⚠️ Sirf tab karo agar aap is request ko jaante ho.`
-  );
+  `Location request: ${link}`
+);
   document.getElementById('phoneResult').innerHTML = `
     <div class="result-box">
       <h4><i class="fa-solid fa-circle-check"></i> REQUEST READY — ${phone}</h4>
