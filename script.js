@@ -291,7 +291,7 @@ function copyShareLink() {
 
 function sendWhatsApp() {
   if (!currentLat) { showToast('Track location first!', 'error'); return; }
-  const msg = encodeURIComponent(`My live location: https://maps.google.com/?q=${currentLat},${currentLon}\n\nShared via NexaTrack`);
+  const msg = encodeURIComponent(`My location: https://maps.google.com/?q=${currentLat},${currentLon}`);
   window.open(`https://wa.me/?text=${msg}`, '_blank');
 }
 
