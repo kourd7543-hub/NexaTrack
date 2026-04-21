@@ -12,7 +12,7 @@ function findByPhone() {
   const phone = document.getElementById('phoneInput').value.trim();
   const cleaned = phone.replace(/[\s\-\(\)\+]/g, '');
   if (!phone || cleaned.length < 10) {
-    showToast('Valid phone number daalo!', 'error');
+    showToast('Please enter a valid phone number!', 'error');
     return;
   }
   const waNum = cleaned.startsWith('91') ? cleaned : '91' + cleaned;
@@ -33,13 +33,13 @@ function findByPhone() {
       </div>
     </div>
   `;
-  showToast('WhatsApp ya SMS choose karo!', 'success');
+  showToast('Choose WhatsApp or SMS to send!', 'success');
 }
 
 // ===== FIND BY CODE =====
 function findByCode() {
   const raw = document.getElementById('codeInput').value.trim().toUpperCase();
-  if (!raw) { showToast('Code daalo!', 'error'); return; }
+  if (!raw) { showToast('Please enter a share code!', 'error'); return; }
   const local = localStorage.getItem('ts_shared_' + raw);
   if (local) {
     const data = JSON.parse(local);
@@ -60,10 +60,10 @@ function findByCode() {
       </div>
     `;
     showOnMap(lat, lon);
-    showToast('Location mil gayi!', 'success');
+    showToast('Location found!', 'success');
     return;
   }
-  showToast(`"${raw}" code nahi mila.`, 'error');
+  showToast(`"${raw}" code not found.`, 'error');
 }
 
 // ===== WATCH LIVE =====
@@ -74,11 +74,11 @@ function watchLive() {
   document.getElementById('liveBox').innerHTML = `
     <div class="no-data">
       <i class="fa-solid fa-satellite-dish fa-beat" style="color:var(--accent);font-size:1.5rem;display:block;margin-bottom:10px"></i>
-      <strong style="color:var(--accent)">Signal ka intezaar hai...</strong><br>
-      <small>Jaise hi device location bhejega, yahan dikhega</small>
+      <strong style="color:var(--accent)">Waiting for signal...</strong><br>
+      <small>As soon as the device shares location, it will appear here.</small>
     </div>
   `;
-  showToast('Live watch shuru...', 'info');
+  showToast('Live watch started...', 'info');
 
   watchInterval = setInterval(async () => {
     try {
@@ -91,7 +91,7 @@ function watchLive() {
           clearInterval(watchInterval);
           document.getElementById('stopBtn').style.display = 'none';
           showLiveData(data);
-          showToast('🎯 Live location aa gayi!', 'success');
+          showToast('🎯 Live location received!', 'success');
         }
       }
     } catch(e) {}
@@ -100,14 +100,14 @@ function watchLive() {
   setTimeout(() => {
     clearInterval(watchInterval);
     document.getElementById('stopBtn').style.display = 'none';
-    showToast('Timeout — koi signal nahi aaya.', 'error');
+    showToast('Timeout — no signal received.', 'error');
   }, 300000);
 }
 
 function stopWatch() {
   clearInterval(watchInterval);
   document.getElementById('stopBtn').style.display = 'none';
-  showToast('Watch band kar di.', 'info');
+  showToast('Live watch stopped.', 'info');
 }
 
 // ===== LOAD LAST KNOWN =====
@@ -115,7 +115,7 @@ async function loadLast() {
   document.getElementById('liveBox').innerHTML = `
     <div class="no-data">
       <i class="fa-solid fa-spinner fa-spin" style="color:var(--accent);font-size:1.2rem;display:block;margin-bottom:8px"></i>
-      Dhundh raha hun...
+      Searching...
     </div>
   `;
 
@@ -133,7 +133,7 @@ async function loadLast() {
   document.getElementById('liveBox').innerHTML = `
     <div class="no-data">
       <i class="fa-solid fa-triangle-exclamation" style="color:var(--danger);font-size:1.3rem;display:block;margin-bottom:10px"></i>
-      Koi saved location nahi mili.<br>
+      No saved location found.<br>
       <small>Home page pe "Track My Location" click karo aur "Share Location" karo — tab yahan dikhega.</small>
     </div>
   `;
@@ -145,7 +145,7 @@ function showLiveData(data) {
   const lon = parseFloat(data.lon);
   document.getElementById('liveBox').innerHTML = `
     <div class="result-box">
-      <h4><i class="fa-solid fa-circle-check"></i> LOCATION MILI</h4>
+      <h4><i class="fa-solid fa-circle-check"></i> LOCATION FOUND</h4>
       <div class="result-row"><span>Latitude</span><strong>${lat.toFixed(6)}</strong></div>
       <div class="result-row"><span>Longitude</span><strong>${lon.toFixed(6)}</strong></div>
       <div class="result-row"><span>Accuracy</span><strong>${data.accuracy}m</strong></div>
