@@ -149,12 +149,13 @@
   <!-- Card 1: Phone Number -->
   <div class="fd-card">
     <div class="fd-icon blue"><i class="fa-solid fa-phone"></i></div>
-    <h3>Phone Number Se Dhundho</h3>
-    <p>Lost device ke number pe WhatsApp ya SMS se location request bhejna. Jab koi link open karega, location share ho jayegi.</p>
+   <h3 data-lang="find-phone-title">Find by Phone Number</h3>
+<p data-lang="find-phone-desc">Send a location request to the lost device via WhatsApp or SMS.</p>
     <div class="fd-input">
       <input type="tel" id="phoneInput" placeholder="+91 98765 43210" />
       <button class="btn-primary" onclick="findByPhone()">
-        <i class="fa-solid fa-paper-plane"></i> Send Request
+        
+        <i class="fa-solid fa-paper-plane"></i> <span data-lang="btn-send-request">Send Request</span>
       </button>
     </div>
     <div class="result-area" id="phoneResult"></div>
@@ -163,12 +164,13 @@
   <!-- Card 2: Device Code -->
   <div class="fd-card">
     <div class="fd-icon green"><i class="fa-solid fa-link"></i></div>
-    <h3>Device Code Se Dhundho</h3>
-    <p>Pehle se generated TS-XXXXX code enter karo. Yeh code tab banta hai jab home page pe "Share Location" click kiya ho.</p>
+    <h3 data-lang="find-code-title">Find by Share Code</h3>
+<p data-lang="find-code-desc">Enter the TS-XXXXX code generated when "Share Location" was clicked.</p>
     <div class="fd-input">
       <input type="text" id="codeInput" placeholder="e.g. TS-48291" />
       <button class="btn-primary" onclick="findByCode()">
-        <i class="fa-solid fa-search"></i> Track Device
+        
+        <i class="fa-solid fa-search"></i> <span data-lang="btn-track-device">Track Device</span>
       </button>
     </div>
     <div class="result-area" id="codeResult"></div>
@@ -178,7 +180,7 @@
   <div class="fd-card full">
     <div class="fd-icon red"><i class="fa-solid fa-satellite-dish"></i></div>
     <h3>Live Location / Last Known</h3>
-    <p>Agar device ne pehle location share ki thi ya live tracking chal rahi hai toh yahan dikhegi.</p>
+    <p data-lang="find-own-desc">View the last known location saved before the device was lost.</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
       <button class="btn-primary" onclick="watchLive()">
         <i class="fa-solid fa-satellite-dish fa-beat"></i> Watch Live
@@ -192,8 +194,8 @@
     </div>
     <div id="liveBox" class="no-data">
       <i class="fa-solid fa-satellite-dish" style="font-size:1.4rem;color:var(--text-muted);display:block;margin-bottom:10px"></i>
-      Abhi koi location data nahi hai.<br>
-      <small>Watch Live ya Last Known click karo.</small>
+      No location data yet.<br>
+      <small>Click Watch Live or Last Known to begin.</small>
     </div>
     <div id="liveMap" style="display:none;height:320px;margin-top:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(26,110,245,0.3)"></div>
   </div>
