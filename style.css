@@ -46,9 +46,10 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
-  justify-content: space-between;
+  gap: 16px;
   padding: 14px 40px;
   background: rgba(3, 9, 20, 0.95);
   border-bottom: 1px solid var(--card-border);
@@ -80,6 +81,12 @@ header {
 
 .logo h2 span { color: var(--accent); }
 
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 nav a {
   color: var(--text-muted);
   text-decoration: none;
@@ -103,8 +110,8 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
   font-family: var(--font-display);
   color: var(--accent2);
   letter-spacing: 1px;
+  white-space: nowrap;
 }
-
 .status-dot {
   width: 8px; height: 8px;
   background: var(--accent2);

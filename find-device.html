@@ -125,12 +125,12 @@
     <h2>Nexa<span>Track</span></h2>
   </div>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="find-device.html" class="active">Find Device</a>
-    <a href="contact.html">Contact</a>
+    <a href="index.html" data-lang="nav-home">Home</a>
+    <a href="about.html" data-lang="nav-about">About</a>
+    <a href="find-device.html" class="active" data-lang="nav-find">Find Device</a>
+    <a href="contact.html" data-lang="nav-contact">Contact</a>
   </nav>
-  <div class="nav-status"><span class="status-dot"></span><span>System Online</span></div>
+  <div class="nav-status"><span class="status-dot"></span><span data-lang="nav-status">System Online</span></div>
   <button id="langToggleBtn" onclick="toggleLang()">
     <span class="lang-active">EN</span>
     <span class="lang-divider">|</span>
@@ -140,21 +140,18 @@
 
 <section class="about-hero">
   <div class="hero-badge"><i class="fa-solid fa-magnifying-glass-location"></i> DEVICE RECOVERY</div>
-  <h1>Find Lost Device</h1>
-  <p>Phone number se request bhejon ya device code se location dekho</p>
+  <h1 data-lang="find-hero-title">Find Lost Device</h1>
+  <p data-lang="find-hero-desc">Locate a lost device using phone number, share link, or device code</p>
 </section>
 
 <div class="fd-grid">
-
-  <!-- Card 1: Phone Number -->
   <div class="fd-card">
     <div class="fd-icon blue"><i class="fa-solid fa-phone"></i></div>
-   <h3 data-lang="find-phone-title">Find by Phone Number</h3>
-<p data-lang="find-phone-desc">Send a location request to the lost device via WhatsApp or SMS.</p>
+    <h3 data-lang="find-phone-title">Find by Phone Number</h3>
+    <p data-lang="find-phone-desc">Send a location request to the lost device via WhatsApp or SMS.</p>
     <div class="fd-input">
       <input type="tel" id="phoneInput" placeholder="+91 98765 43210" />
       <button class="btn-primary" onclick="findByPhone()">
-        
         <i class="fa-solid fa-paper-plane"></i> <span data-lang="btn-send-request">Send Request</span>
       </button>
     </div>
@@ -165,28 +162,26 @@
   <div class="fd-card">
     <div class="fd-icon green"><i class="fa-solid fa-link"></i></div>
     <h3 data-lang="find-code-title">Find by Share Code</h3>
-<p data-lang="find-code-desc">Enter the TS-XXXXX code generated when "Share Location" was clicked.</p>
+    <p data-lang="find-code-desc">Enter the TS-XXXXX code generated when "Share Location" was clicked.</p>
     <div class="fd-input">
       <input type="text" id="codeInput" placeholder="e.g. TS-48291" />
       <button class="btn-primary" onclick="findByCode()">
-        
         <i class="fa-solid fa-search"></i> <span data-lang="btn-track-device">Track Device</span>
       </button>
     </div>
     <div class="result-area" id="codeResult"></div>
   </div>
 
-  <!-- Card 3: Live / Last Known -->
   <div class="fd-card full">
     <div class="fd-icon red"><i class="fa-solid fa-satellite-dish"></i></div>
-    <h3>Live Location / Last Known</h3>
-    <p data-lang="find-own-desc">View the last known location saved before the device was lost.</p>
+    <h3 data-lang="find-own-title">Live Location / Last Known</h3>
+    <p data-lang="find-own-desc">View last known location saved before device was lost.</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
       <button class="btn-primary" onclick="watchLive()">
-        <i class="fa-solid fa-satellite-dish fa-beat"></i> Watch Live
+        <i class="fa-solid fa-satellite-dish fa-beat"></i> <span data-lang="btn-watch-live">Watch Live Location</span>
       </button>
       <button class="btn-secondary" onclick="loadLast()">
-        <i class="fa-solid fa-clock-rotate-left"></i> Last Known
+        <i class="fa-solid fa-clock-rotate-left"></i> <span data-lang="btn-load-last">Load Last Known Location</span>
       </button>
       <button class="btn-secondary" id="stopBtn" onclick="stopWatch()" style="display:none">
         <i class="fa-solid fa-stop"></i> Stop
@@ -194,12 +189,12 @@
     </div>
     <div id="liveBox" class="no-data">
       <i class="fa-solid fa-satellite-dish" style="font-size:1.4rem;color:var(--text-muted);display:block;margin-bottom:10px"></i>
-      No location data yet.<br>
-      <small>Click Watch Live or Last Known to begin.</small>
+      Abhi koi location data nahi hai.<br>
+      <small>Watch Live ya Last Known click karo.</small>
     </div>
     <div id="liveMap" style="display:none;height:320px;margin-top:16px;border-radius:12px;overflow:hidden;border:1px solid rgba(26,110,245,0.3)"></div>
   </div>
-
+</div>
 </div>
 
 <footer>

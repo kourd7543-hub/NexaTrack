@@ -21,14 +21,15 @@
     <h2>Nexa<span>Track</span></h2>
   </div>
   <nav>
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="find-device.html">Find Device</a>
-    <a href="contact.html">Contact</a>
+  <nav>
+    <a href="index.html" class="active" data-lang="nav-home">Home</a>
+    <a href="about.html" data-lang="nav-about">About</a>
+    <a href="find-device.html" data-lang="nav-find">Find Device</a>
+    <a href="contact.html" data-lang="nav-contact">Contact</a>
   </nav>
   <div class="nav-status">
     <span class="status-dot"></span>
-    <span>System Online</span>
+    <span data-lang="nav-status">System Online</span>
   </div>
 <button id="langToggleBtn" onclick="toggleLang()">
   <span class="lang-active">EN</span>
@@ -45,12 +46,11 @@
     <div class="hero-badge"><i class="fa-solid fa-satellite-dish"></i> LIVE SYSTEM ACTIVE</div>
     <h1>Real-Time Location<br><span>Intelligence Platform</span></h1>
     <p>Track live location, store history, and recover lost devices using phone number or share link.</p>
-    <div class="hero-actions">
-      <button class="btn-primary" onclick="startTracking()">
-        <i class="fa-solid fa-location-crosshairs"></i> Track My Location
+    <button class="btn-primary" onclick="startTracking()">
+        <i class="fa-solid fa-location-crosshairs"></i> <span data-lang="btn-track">Track My Location</span>
       </button>
       <button class="btn-secondary" onclick="window.location.href='find-device.html'">
-        <i class="fa-solid fa-magnifying-glass-location"></i> Find Lost Device
+        <i class="fa-solid fa-magnifying-glass-location"></i> <span data-lang="btn-find">Find Lost Device</span>
       </button>
       
     </div>
@@ -65,16 +65,16 @@
 <!-- DASHBOARD -->
 <section class="dashboard" id="dashboard">
   <div class="dash-header">
-    <h2><i class="fa-solid fa-chart-line"></i> Live Dashboard</h2>
+    <h2><i class="fa-solid fa-chart-line"></i> <span data-lang="dash-title">Live Dashboard</span></h2>
     <div class="dash-controls">
       <button class="ctrl-btn" id="watchBtn" onclick="toggleWatch()">
-        <i class="fa-solid fa-play"></i> Start Live Watch
+        <i class="fa-solid fa-play"></i> <span data-lang="btn-watch">Start Live Watch</span>
       </button>
       <button class="ctrl-btn danger" onclick="clearHistory()">
-        <i class="fa-solid fa-trash"></i> Clear History
+        <i class="fa-solid fa-trash"></i> <span data-lang="btn-clear">Clear History</span>
       </button>
       <button class="ctrl-btn success" onclick="shareLocation()">
-        <i class="fa-solid fa-share-nodes"></i> Share Link
+        <i class="fa-solid fa-share-nodes"></i> <span data-lang="btn-share">Share Link</span>
       </button>
     </div>
   </div>
@@ -96,51 +96,48 @@
 
     <!-- Map -->
 <div class="card map-card">
-  <div class="card-title"><i class="fa-solid fa-map"></i> Live Map</div>
-  <!-- Globe — track karne se pehle -->
+  <div class="card-title"><i class="fa-solid fa-map"></i> <span data-lang="map-title">Live Map</span></div>
   <div id="globe-container">
     <canvas id="globe-canvas"></canvas>
     <div class="globe-overlay-text">
       <i class="fa-solid fa-location-crosshairs fa-beat"></i>
-      <span>Click "Track My Location" to begin</span>
+      <span data-lang="globe-text">Click "Track My Location" to begin</span>
     </div>
     <div class="orbit-ring orbit-1"><div class="satellite"><i class="fa-solid fa-satellite"></i></div></div>
     <div class="signal-pulse p1"></div>
     <div class="signal-pulse p2"></div>
     <div class="signal-pulse p3"></div>
   </div>
-  <!-- Real map — track karne ke baad -->
   <div id="map" style="display:none;"></div>
 </div>
 
-    <!-- History -->
     <div class="card history-card">
-      <div class="card-title"><i class="fa-solid fa-clock-rotate-left"></i> Location History</div>
+      <div class="card-title"><i class="fa-solid fa-clock-rotate-left"></i> <span data-lang="history-title">Location History</span></div>
       <div id="history-list">
-        <div class="no-history">No history yet. Click Track to begin.</div>
+        <div class="no-history" data-lang="no-history">No history yet. Click Track to begin.</div>
       </div>
     </div>
 
-    <!-- Share Card -->
     <div class="card share-card">
-      <div class="card-title"><i class="fa-solid fa-share-nodes"></i> Share & Find</div>
+      <div class="card-title"><i class="fa-solid fa-share-nodes"></i> <span data-lang="share-title">Share & Find</span></div>
       <div class="share-options">
         <div class="share-option" onclick="copyShareLink()">
           <i class="fa-solid fa-link"></i>
-          <span>Copy Share Link</span>
+          <span data-lang="share-link">Copy Share Link</span>
         </div>
         <div class="share-option" onclick="sendWhatsApp()">
           <i class="fa-brands fa-whatsapp"></i>
-          <span>Send via WhatsApp</span>
+          <span data-lang="share-wa">Send via WhatsApp</span>
         </div>
         <div class="share-option" onclick="sendSMS()">
           <i class="fa-solid fa-message"></i>
-          <span>Send via SMS</span>
+          <span data-lang="share-sms">Send via SMS</span>
         </div>
         <div class="share-option" onclick="window.location.href='find-device.html'">
           <i class="fa-solid fa-mobile-screen-button"></i>
-          <span>Lost Device Recovery</span>
+          <span data-lang="share-lost">Lost Device Recovery</span>
         </div>
+      </div>
       </div>
       <div class="share-link-box" id="shareLinkBox" style="display:none">
         <input type="text" id="shareLink" readonly>

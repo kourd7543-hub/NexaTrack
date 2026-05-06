@@ -17,86 +17,78 @@
     <h2>Nexa<span>Track</span></h2>
   </div>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
-    <a href="find-device.html">Find Device</a>
-    <a href="contact.html">Contact</a>
+    <a href="index.html" data-lang="nav-home">Home</a>
+    <a href="about.html" class="active" data-lang="nav-about">About</a>
+    <a href="find-device.html" data-lang="nav-find">Find Device</a>
+    <a href="contact.html" data-lang="nav-contact">Contact</a>
   </nav>
-  <div class="nav-status"><span class="status-dot"></span><span>System Online</span></div>
-
-<button id="langToggleBtn" onclick="toggleLang()">
-  <span class="lang-active">EN</span>
-  <span class="lang-divider">|</span>
-  <span class="lang-inactive">हि</span>
-</button>
+  <div class="nav-status">
+    <span class="status-dot"></span>
+    <span data-lang="nav-status">System Online</span>
+  </div>
+  <button id="langToggleBtn" onclick="toggleLang()">
+    <span class="lang-active">EN</span>
+    <span class="lang-divider">|</span>
+    <span class="lang-inactive">हि</span>
+  </button>
 </header>
-
 
 <section class="brand-banner">
   <h1 class="brand-title">NexaTrack</h1>
-  <p class="brand-tagline">Real-Time Location Intelligence</p>
+  <p class="brand-tagline" data-lang="about-tagline">Real-Time Location Intelligence</p>
 </section>
 
 <section class="about-hero">
   <div class="hero-badge"><i class="fa-solid fa-circle-info"></i> ABOUT THE PLATFORM</div>
-  <h1>About NexaTrack</h1>
-  <p>Your smart and reliable real-time location tracking solution.</p>
+  <h1 data-lang="about-title">About NexaTrack</h1>
+  <p data-lang="about-subtitle">Your smart and reliable real-time location tracking solution.</p>
 </section>
 
 <section class="about-box">
-  <h2>What is NexaTrack?</h2>
-  <p>
-    NexaTrack is a modern web-based application that allows users to track their real-time 
-    geographical location instantly. It uses advanced browser Geolocation technology to provide 
-    accurate coordinates and display them on an interactive map. Location history is saved locally, 
-    and devices can be shared or recovered using unique codes or phone numbers.
-  </p>
+  <h2 data-lang="about-what-title">What is NexaTrack?</h2>
+  <p data-lang="about-what-desc">NexaTrack is a modern web-based application that allows users to track their real-time geographical location instantly. It uses advanced browser Geolocation technology to provide accurate coordinates and display them on an interactive map. Location history is saved locally, and devices can be shared or recovered using unique codes or phone numbers.</p>
 </section>
 
 <div class="feature-grid">
   <a href="live-tracking.html" class="feature-item">
     <i class="fa-solid fa-location-dot"></i>
-    <h3>Live Tracking</h3>
-    <p>Instantly detect your current location.</p>
+    <h3 data-lang="about-feat1-title">Live Tracking</h3>
+    <p data-lang="about-feat1-desc">Instantly detect your current location.</p>
   </a>
   <a href="interactive-map.html" class="feature-item">
     <i class="fa-solid fa-map"></i>
-    <h3>Interactive Map</h3>
-    <p>View your exact position visually.</p>
+    <h3 data-lang="about-feat2-title">Interactive Map</h3>
+    <p data-lang="about-feat2-desc">View your exact position visually.</p>
   </a>
   <a href="index.html" class="feature-item">
     <i class="fa-solid fa-clock-rotate-left"></i>
-    <h3>Location History</h3>
-    <p>Review past locations with timestamps.</p>
+    <h3 data-lang="about-feat3-title">Location History</h3>
+    <p data-lang="about-feat3-desc">Review past locations with timestamps.</p>
   </a>
   <a href="find-device.html" class="feature-item">
     <i class="fa-solid fa-mobile-screen-button"></i>
-    <h3>Device Recovery</h3>
-    <p>Find lost device by phone or code.</p>
+    <h3 data-lang="about-feat4-title">Device Recovery</h3>
+    <p data-lang="about-feat4-desc">Find lost device by phone or code.</p>
   </a>
   <a href="privacy.html" class="feature-item">
     <i class="fa-solid fa-shield-halved"></i>
-    <h3>Privacy Focused</h3>
-    <p>No user data is stored on servers.</p>
+    <h3 data-lang="about-feat5-title">Privacy Focused</h3>
+    <p data-lang="about-feat5-desc">No user data is stored on servers.</p>
   </a>
 </div>
 
 <section class="about-box developer">
-  <h2>Developer</h2>
-  <p>
-    Developed by <strong>Sandeep</strong><br>
-    Frontend Web Developer<br>
-    Passionate about building interactive web applications.
-  </p>
+  <h2 data-lang="about-dev-title">Developer</h2>
+  <p data-lang="about-dev-desc">Developed by <strong>Sandeep</strong><br>Frontend Web Developer<br>Passionate about building interactive web applications.</p>
 </section>
 
 <footer>
   <div class="footer-content">
     <div class="footer-logo"><i class="fa-solid fa-location-dot"></i> NexaTrack</div>
-    <p>© 2026 NexaTrack | Developed by Sandeep</p>
+    <p data-lang="footer-copy">© 2026 NexaTrack | Developed by Sandeep</p>
     <div class="footer-links">
-      <a href="privacy.html">Privacy</a>
-      <a href="contact.html">Contact</a>
+      <a href="privacy.html" data-lang="footer-privacy">Privacy</a>
+      <a href="contact.html" data-lang="footer-contact">Contact</a>
     </div>
   </div>
 </footer>

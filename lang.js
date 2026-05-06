@@ -29,13 +29,6 @@ const TRANSLATIONS = {
     'feat-5': 'Privacy First',
     'find-hero-title': 'Lost Device Finder',
     'find-hero-desc': 'Locate a lost device using phone number, share link, or device code',
-    'emergency-title': 'Setup Emergency Info — Before Losing Device',
-    'emergency-desc': 'Save your name and phone number. If device is lost and someone finds it — they will see this info and can alert you directly.',
-    'owner-name': 'Your Name',
-    'owner-phone': 'Your WhatsApp Number',
-    'owner-reward': 'Reward Message (optional)',
-    'btn-save-emergency': 'Save Emergency Info',
-    'emergency-saved': 'Emergency Info Saved!',
     'find-phone-title': 'Find by Phone Number',
     'find-phone-desc': 'Send a location request to the lost device via WhatsApp or SMS.',
     'btn-send-request': 'Send Request',
@@ -43,17 +36,51 @@ const TRANSLATIONS = {
     'find-code-title': 'Find by Share Code',
     'find-code-desc': 'Enter the TS-XXXXX code generated when "Share Location" was clicked.',
     'btn-track-device': 'Track Device',
-    'find-own-title': 'I Lost My Own Device',
+    'find-own-title': 'Live Location / Last Known',
     'find-own-desc': 'View last known location saved before device was lost.',
     'btn-load-last': 'Load Last Known Location',
     'about-title': 'About NexaTrack',
+    'about-tagline': 'Real-Time Location Intelligence',
+    'about-subtitle': 'Your smart and reliable real-time location tracking solution.',
+    'about-what-title': 'What is NexaTrack?',
+    'about-what-desc': 'NexaTrack is a modern web-based application that allows users to track their real-time geographical location instantly. It uses advanced browser Geolocation technology to provide accurate coordinates and display them on an interactive map. Location history is saved locally, and devices can be shared or recovered using unique codes or phone numbers.',
+    'about-feat1-title': 'Live Tracking',
+    'about-feat1-desc': 'Instantly detect your current location.',
+    'about-feat2-title': 'Interactive Map',
+    'about-feat2-desc': 'View your exact position visually.',
+    'about-feat3-title': 'Location History',
+    'about-feat3-desc': 'Review past locations with timestamps.',
+    'about-feat4-title': 'Device Recovery',
+    'about-feat4-desc': 'Find lost device by phone or code.',
+    'about-feat5-title': 'Privacy Focused',
+    'about-feat5-desc': 'No user data is stored on servers.',
+    'about-dev-title': 'Developer',
+    'about-dev-desc': 'Developed by <strong>Sandeep</strong><br>Frontend Web Developer<br>Passionate about building interactive web applications.',
     'contact-title': 'Contact Us',
     'contact-desc': 'Have a question or feedback? Reach out anytime.',
+    'contact-name': 'Your Name',
+    'contact-email': 'Your Email',
+    'contact-msg': 'Your Message',
     'btn-send': 'Send Message',
     'footer-copy': '© 2026 NexaTrack | Developed by Sandeep',
     'footer-privacy': 'Privacy Policy',
     'footer-about': 'About',
     'footer-contact': 'Contact',
+    'toast-geo-unsupported': 'Geolocation not supported by this browser.',
+    'toast-fetching': 'Fetching your location...',
+    'toast-tracked': 'Location tracked successfully!',
+    'toast-watch-stop': 'Live watch stopped.',
+    'toast-watch-start': 'Live watch started! Location updates automatically.',
+    'toast-cleared': 'History cleared.',
+    'toast-track-first': 'Please track your location first!',
+    'toast-share-ready': 'Share link ready!',
+    'toast-track-first2': 'Track location first!',
+    'toast-copied': 'Link copied to clipboard!',
+    'toast-msg-sent': 'Message sent successfully!',
+    'toast-msg-fail': 'Failed to send. Please try again!',
+    'toast-perm-denied': 'Location permission denied. Please allow location access.',
+    'toast-unavail': 'Location information unavailable.',
+    'toast-timeout': 'Location request timed out. Try again.',
   },
   hi: {
     'nav-home': 'होम',
@@ -83,13 +110,6 @@ const TRANSLATIONS = {
     'feat-5': 'प्राइवेसी फर्स्ट',
     'find-hero-title': 'खोया डिवाइस खोजें',
     'find-hero-desc': 'फोन नंबर, शेयर लिंक या डिवाइस कोड से खोया डिवाइस ढूंढें',
-    'emergency-title': 'इमरजेंसी जानकारी सेटअप करें',
-    'emergency-desc': 'अपना नाम और फोन नंबर सेव करें।',
-    'owner-name': 'आपका नाम',
-    'owner-phone': 'आपका WhatsApp नंबर',
-    'owner-reward': 'इनाम संदेश (वैकल्पिक)',
-    'btn-save-emergency': 'इमरजेंसी जानकारी सेव करें',
-    'emergency-saved': 'इमरजेंसी जानकारी सेव हो गई!',
     'find-phone-title': 'फोन नंबर से खोजें',
     'find-phone-desc': 'खोए डिवाइस पर WhatsApp या SMS से लोकेशन रिक्वेस्ट भेजें।',
     'btn-send-request': 'रिक्वेस्ट भेजें',
@@ -97,22 +117,61 @@ const TRANSLATIONS = {
     'find-code-title': 'शेयर कोड से खोजें',
     'find-code-desc': '"शेयर लोकेशन" क्लिक करने पर बना कोड डालें।',
     'btn-track-device': 'डिवाइस ट्रैक करें',
-    'find-own-title': 'मेरा खुद का डिवाइस खो गया',
+    'find-own-title': 'लाइव लोकेशन / अंतिम लोकेशन',
     'find-own-desc': 'डिवाइस खोने से पहले सेव की गई अंतिम लोकेशन देखें।',
     'btn-load-last': 'अंतिम लोकेशन लोड करें',
     'about-title': 'NexaTrack के बारे में',
+    'about-tagline': 'रियल-टाइम लोकेशन इंटेलिजेंस',
+    'about-subtitle': 'आपका स्मार्ट और विश्वसनीय रियल-टाइम लोकेशन ट्रैकिंग समाधान।',
+    'about-what-title': 'NexaTrack क्या है?',
+    'about-what-desc': 'NexaTrack एक आधुनिक वेब-आधारित एप्लिकेशन है जो उपयोगकर्ताओं को तुरंत अपनी रियल-टाइम भौगोलिक स्थान ट्रैक करने देती है। यह सटीक निर्देशांक देने के लिए उन्नत ब्राउज़र Geolocation तकनीक का उपयोग करती है।',
+    'about-feat1-title': 'लाइव ट्रैकिंग',
+    'about-feat1-desc': 'तुरंत अपनी वर्तमान लोकेशन जानें।',
+    'about-feat2-title': 'इंटरेक्टिव मैप',
+    'about-feat2-desc': 'अपनी सटीक स्थिति नक्शे पर देखें।',
+    'about-feat3-title': 'लोकेशन हिस्ट्री',
+    'about-feat3-desc': 'पिछली लोकेशन टाइमस्टैम्प के साथ देखें।',
+    'about-feat4-title': 'डिवाइस रिकवरी',
+    'about-feat4-desc': 'फोन या कोड से खोया डिवाइस ढूंढें।',
+    'about-feat5-title': 'प्राइवेसी फोकस्ड',
+    'about-feat5-desc': 'कोई डेटा सर्वर पर स्टोर नहीं होता।',
+    'about-dev-title': 'डेवलपर',
+    'about-dev-desc': '<strong>Sandeep</strong> द्वारा विकसित<br>फ्रंटएंड वेब डेवलपर<br>इंटरेक्टिव वेब एप्लिकेशन बनाने में रुचि।',
     'contact-title': 'हमसे संपर्क करें',
     'contact-desc': 'कोई सवाल या सुझाव? कभी भी संपर्क करें।',
+    'contact-name': 'आपका नाम',
+    'contact-email': 'आपका ईमेल',
+    'contact-msg': 'आपका संदेश',
     'btn-send': 'संदेश भेजें',
     'footer-copy': '© 2026 NexaTrack | Sandeep द्वारा विकसित',
     'footer-privacy': 'गोपनीयता नीति',
     'footer-about': 'परिचय',
     'footer-contact': 'संपर्क',
+    'toast-geo-unsupported': 'यह ब्राउज़र Geolocation सपोर्ट नहीं करता।',
+    'toast-fetching': 'आपकी लोकेशन ढूंढी जा रही है...',
+    'toast-tracked': 'लोकेशन सफलतापूर्वक ट्रैक हो गई!',
+    'toast-watch-stop': 'लाइव वॉच बंद हो गई।',
+    'toast-watch-start': 'लाइव वॉच शुरू! लोकेशन अपने आप अपडेट होगी।',
+    'toast-cleared': 'हिस्ट्री साफ हो गई।',
+    'toast-track-first': 'पहले अपनी लोकेशन ट्रैक करें!',
+    'toast-share-ready': 'शेयर लिंक तैयार है!',
+    'toast-track-first2': 'पहले लोकेशन ट्रैक करें!',
+    'toast-copied': 'लिंक कॉपी हो गई!',
+    'toast-msg-sent': 'संदेश सफलतापूर्वक भेज दिया!',
+    'toast-msg-fail': 'भेजने में विफल। फिर कोशिश करें!',
+    'toast-perm-denied': 'लोकेशन की अनुमति नहीं मिली। कृपया अनुमति दें।',
+    'toast-unavail': 'लोकेशन जानकारी उपलब्ध नहीं है।',
+    'toast-timeout': 'लोकेशन अनुरोध का समय समाप्त। फिर कोशिश करें।',
   }
 };
 
 function getCurrentLang() {
   return localStorage.getItem('nx_lang') || 'en';
+}
+
+function t(key) {
+  const lang = getCurrentLang();
+  return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || (TRANSLATIONS['en'][key]) || key;
 }
 
 function setLang(lang) {
@@ -122,15 +181,15 @@ function setLang(lang) {
 }
 
 function applyTranslations(lang) {
-  const t = TRANSLATIONS[lang];
-  if (!t) return;
+  const tr = TRANSLATIONS[lang];
+  if (!tr) return;
   document.querySelectorAll('[data-lang]').forEach(el => {
     const key = el.getAttribute('data-lang');
-    if (t[key]) {
+    if (tr[key]) {
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = t[key];
+        el.placeholder = tr[key];
       } else {
-        el.innerHTML = t[key];
+        el.innerHTML = tr[key];
       }
     }
   });
@@ -140,9 +199,9 @@ function updateToggleBtn(lang) {
   const btn = document.getElementById('langToggleBtn');
   if (!btn) return;
   if (lang === 'en') {
-    btn.innerHTML = `<span class="lang-active">EN</span><span class="lang-divider">|</span><span class="lang-inactive">हि</span>`;
+    btn.innerHTML = '<span class="lang-active">EN</span><span class="lang-divider">|</span><span class="lang-inactive">हि</span>';
   } else {
-    btn.innerHTML = `<span class="lang-inactive">EN</span><span class="lang-divider">|</span><span class="lang-active">हि</span>`;
+    btn.innerHTML = '<span class="lang-inactive">EN</span><span class="lang-divider">|</span><span class="lang-active">हि</span>';
   }
 }
 

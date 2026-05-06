@@ -4,7 +4,7 @@ function showToast(msg, type = 'info') {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'toast show ' + type;
-  setTimeout(() => t.className = 'toast', 3500);
+ setTimeout(() => t.className = 'toast', 12000);
 }
 
 // ===== FIND BY PHONE =====
