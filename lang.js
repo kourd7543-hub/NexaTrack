@@ -152,7 +152,8 @@ function toggleLang() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  localStorage.setItem('nx_lang', 'en');
-  applyTranslations('en');
-  updateToggleBtn('en');
+  const lang = localStorage.getItem('nx_lang') || 'en';
+  localStorage.setItem('nx_lang', lang);
+  applyTranslations(lang);
+  updateToggleBtn(lang);
 });
