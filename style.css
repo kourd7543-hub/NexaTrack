@@ -1,3 +1,20 @@
+/* ===== HINDI FONT ===== */
+:lang(hi) body, body.hindi {
+  font-family: 'Noto Sans Devanagari', sans-serif !important;
+}
+:lang(hi) nav a, body.hindi nav a,
+:lang(hi) .ctrl-btn, body.hindi .ctrl-btn,
+:lang(hi) .btn-primary, body.hindi .btn-primary,
+:lang(hi) .btn-secondary, body.hindi .btn-secondary,
+:lang(hi) span[data-lang], body.hindi span[data-lang],
+:lang(hi) p[data-lang], body.hindi p[data-lang],
+:lang(hi) h1[data-lang], body.hindi h1[data-lang],
+:lang(hi) h2[data-lang], body.hindi h2[data-lang],
+:lang(hi) h3[data-lang], body.hindi h3[data-lang] {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  letter-spacing: 0;
+}
+
 /* ========================================
    TRACK SPHERE — ADVANCED DARK TECH THEME
    Font: Orbitron + Rajdhani
@@ -21,6 +38,7 @@
   --glass: rgba(255,255,255,0.04);
   --font-display: 'Orbitron', monospace;
   --font-body: 'Rajdhani', sans-serif;
+  --font-hindi: 'Noto Sans Devanagari', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,6 +49,22 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   overflow-x: hidden;
+}
+
+/* Hindi font — jab body pe inline style set ho */
+body[style*="Noto"] p,
+body[style*="Noto"] span,
+body[style*="Noto"] a,
+body[style*="Noto"] button,
+body[style*="Noto"] label,
+body[style*="Noto"] h1,
+body[style*="Noto"] h2,
+body[style*="Noto"] h3,
+body[style*="Noto"] div,
+body[style*="Noto"] strong {
+  font-family: 'Noto Sans Devanagari', sans-serif !important;
+  font-size: 105%;
+  line-height: 1.8;
 }
 
 #particles {
@@ -46,10 +80,9 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
   padding: 14px 40px;
   background: rgba(3, 9, 20, 0.95);
   border-bottom: 1px solid var(--card-border);
@@ -81,12 +114,6 @@ header {
 
 .logo h2 span { color: var(--accent); }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 nav a {
   color: var(--text-muted);
   text-decoration: none;
@@ -110,8 +137,8 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
   font-family: var(--font-display);
   color: var(--accent2);
   letter-spacing: 1px;
-  white-space: nowrap;
 }
+
 .status-dot {
   width: 8px; height: 8px;
   background: var(--accent2);
@@ -390,8 +417,8 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 .info-row span { color: var(--text-muted); font-size: 13px; flex: 1; }
 .info-row strong { color: white; font-size: 13px; font-weight: 600; text-align: right; word-break: break-all; max-width: 180px; }
 
-.map-card { grid-row: span 2; overflow: hidden; position: relative; }
-#map { height: 100%; min-height: 420px; border-radius: 10px; max-height: 100%; }
+.map-card { grid-row: span 2; }
+#map { height: 100%; min-height: 420px; border-radius: 10px; }
 
 .history-item {
   display: flex;
