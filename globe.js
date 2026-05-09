@@ -18,19 +18,21 @@
   ];
 
   const locationDots = [
-    [28.6,77.2],[51.5,-0.1],[40.7,-74.0],[35.7,139.7],[-33.9,151.2],[48.8,2.3],[55.7,37.6],[1.3,103.8],[-23.5,-46.6],[30.0,31.2],
+    [28.6,77.2],[51.5,-0.1],[40.7,-74.0],[35.7,139.7],[-33.9,151.2],
+    [48.8,2.3],[55.7,37.6],[1.3,103.8],[-23.5,-46.6],[30.0,31.2],
   ];
 
   function resize() {
     const container = canvas.parentElement;
-    W = canvas.width = container.offsetWidth || 500;
-    H = canvas.height = 460;
-    cx = W / 2; cy = H / 2;
-    R = Math.min(W, H) * 0.40;
+    W = canvas.width  = container.offsetWidth  || 500;
+    H = canvas.height = container.offsetHeight || 460;
+    cx = W / 2;
+    cy = H / 2;
+    R  = Math.min(W, H) * 0.42;
   }
 
   function latLonToXY(lat, lon, rot) {
-    const phi = (90 - lat) * Math.PI / 180;
+    const phi   = (90 - lat) * Math.PI / 180;
     const theta = (lon + rot) * Math.PI / 180;
     const x = R * Math.sin(phi) * Math.cos(theta);
     const y = R * Math.cos(phi);
@@ -41,53 +43,48 @@
   function drawGlobe(rot) {
     ctx.clearRect(0, 0, W, H);
 
-    // CIRCULAR CLIP — sab kuch circle ke andar rahega
+    // ── CLIP: sab kuch perfect circle ke andar ──
     ctx.save();
     ctx.beginPath();
     ctx.arc(cx, cy, R, 0, Math.PI * 2);
     ctx.clip();
 
-    // Outer glow
-    const glow = ctx.createRadialGradient(cx, cy, R * 0.5, cx, cy, R * 1.3);
-    glow.addColorStop(0, 'rgba(0,150,255,0)');
-    glow.addColorStop(0.7, 'rgba(0,100,200,0.08)');
-    glow.addColorStop(1, 'rgba(0,180,255,0.18)');
-    ctx.beginPath(); ctx.arc(cx, cy, R * 1.3, 0, Math.PI * 2);
-    ctx.fillStyle = glow; ctx.fill();
-
-    // Globe base
-    const grad = ctx.createRadialGradient(cx - R*0.3, cy - R*0.3, R*0.1, cx, cy, R);
-    // Clip everything inside circle - ROUND GLOBE FIX
-    ctx.save();
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
-    ctx.clip();
-
     // Ocean background
-    const grad = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.3, 0, cx, cy, R);
-    grad.addColorStop(0, '#0a2a4a');
+    const grad = ctx.createRadialGradient(cx - R*0.3, cy - R*0.3, 0, cx, cy, R);
+    grad.addColorStop(0, '#0d3060');
     grad.addColorStop(0.5, '#061828');
     grad.addColorStop(1, '#020d18');
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
-    ctx.fillStyle = grad; ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
 
-    // Grid lines
+    // Grid lines (latitude)
     for (let lat = -60; lat <= 60; lat += 30) {
-      ctx.beginPath(); let f = true;
+      ctx.beginPath(); let first = true;
       for (let lon = -180; lon <= 180; lon += 3) {
         const p = latLonToXY(lat, lon, rot);
-        if (p.z < 0) { f = true; continue; }
-        f ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y); f = false;
+        if (p.z < 0) { first = true; continue; }
+        first ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+        first = false;
       }
-      ctx.strokeStyle = 'rgba(0,140,255,0.12)'; ctx.lineWidth = 0.5; ctx.stroke();
+      ctx.strokeStyle = 'rgba(0,140,255,0.13)';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
     }
+
+    // Grid lines (longitude)
     for (let lon = 0; lon < 360; lon += 30) {
-      ctx.beginPath(); let f = true;
+      ctx.beginPath(); let first = true;
       for (let lat = -90; lat <= 90; lat += 3) {
         const p = latLonToXY(lat, lon, rot);
-        if (p.z < 0) { f = true; continue; }
-        f ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y); f = false;
+        if (p.z < 0) { first = true; continue; }
+        first ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+        first = false;
       }
-      ctx.strokeStyle = 'rgba(0,140,255,0.12)'; ctx.lineWidth = 0.5; ctx.stroke();
+      ctx.strokeStyle = 'rgba(0,140,255,0.13)';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
     }
 
     // Continents
@@ -96,36 +93,52 @@
       continent.forEach(([lat, lon]) => {
         const p = latLonToXY(lat, lon, rot);
         if (p.z < 0) { started = false; return; }
-        started ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y); started = true;
+        started ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y);
+        started = true;
       });
-      ctx.fillStyle = 'rgba(0,180,120,0.35)'; ctx.fill();
-      ctx.strokeStyle = 'rgba(0,230,150,0.5)'; ctx.lineWidth = 0.8; ctx.stroke();
+      ctx.fillStyle   = 'rgba(0,200,120,0.38)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(0,240,150,0.55)';
+      ctx.lineWidth   = 0.9;
+      ctx.stroke();
     });
 
-    // City dots with pulse
+    // City dots
     locationDots.forEach(([lat, lon], i) => {
       const p = latLonToXY(lat, lon, rot);
       if (p.z < 0) return;
       const pulse = (Math.sin(Date.now() * 0.002 + i * 0.8) + 1) / 2;
-      ctx.beginPath(); ctx.arc(p.x, p.y, 3 + pulse * 6, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(0,230,255,${0.5 - pulse * 0.4})`; ctx.lineWidth = 1; ctx.stroke();
-      ctx.beginPath(); ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = '#00e5ff'; ctx.shadowBlur = 8; ctx.shadowColor = '#00e5ff';
-      ctx.fill(); ctx.shadowBlur = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3 + pulse * 5, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(0,230,255,${0.5 - pulse * 0.35})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle    = '#00e5ff';
+      ctx.shadowBlur   = 8;
+      ctx.shadowColor  = '#00e5ff';
+      ctx.fill();
+      ctx.shadowBlur = 0;
     });
 
     // Specular highlight
-    const spec = ctx.createRadialGradient(cx-R*0.35, cy-R*0.35, 0, cx-R*0.2, cy-R*0.2, R*0.5);
-    spec.addColorStop(0, 'rgba(255,255,255,0.07)');
+    const spec = ctx.createRadialGradient(cx-R*0.35, cy-R*0.35, 0, cx-R*0.2, cy-R*0.2, R*0.55);
+    spec.addColorStop(0, 'rgba(255,255,255,0.09)');
     spec.addColorStop(1, 'rgba(255,255,255,0)');
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
-    ctx.fillStyle = spec; ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.fillStyle = spec;
+    ctx.fill();
 
-    ctx.restore(); // end clip
+    ctx.restore(); // ── end clip ──
 
-    // Border glow OUTSIDE clip
-    ctx.beginPath(); ctx.arc(cx, cy, R + 2, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(0,180,255,0.7)'; ctx.lineWidth = 2; ctx.stroke();
+    // Border glow (bahar clip ke)
+    ctx.beginPath();
+    ctx.arc(cx, cy, R + 2, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(0,180,255,0.75)';
+    ctx.lineWidth   = 2;
+    ctx.stroke();
   }
 
   function animate() {
@@ -135,9 +148,9 @@
   }
 
   window.hideGlobe = function () {
+    cancelAnimationFrame(animId);
     document.getElementById('globe-container').style.display = 'none';
     document.getElementById('map').style.display = 'block';
-    if (animId) { cancelAnimationFrame(animId); animId = null; }
   };
 
   window.addEventListener('resize', resize);
