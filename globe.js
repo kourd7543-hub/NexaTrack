@@ -23,10 +23,10 @@
 
   function resize() {
     const container = canvas.parentElement;
-    W = canvas.width = container.offsetWidth || 400;
-    H = canvas.height = container.offsetHeight || 420;
+    W = canvas.width = container.offsetWidth || 500;
+    H = canvas.height = 460;
     cx = W / 2; cy = H / 2;
-    R = Math.min(W, H) * 0.38;
+    R = Math.min(W, H) * 0.40;
   }
 
   function latLonToXY(lat, lon, rot) {
@@ -41,6 +41,12 @@
   function drawGlobe(rot) {
     ctx.clearRect(0, 0, W, H);
 
+    // CIRCULAR CLIP — sab kuch circle ke andar rahega
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.clip();
+
     // Outer glow
     const glow = ctx.createRadialGradient(cx, cy, R * 0.5, cx, cy, R * 1.3);
     glow.addColorStop(0, 'rgba(0,150,255,0)');
@@ -51,15 +57,18 @@
 
     // Globe base
     const grad = ctx.createRadialGradient(cx - R*0.3, cy - R*0.3, R*0.1, cx, cy, R);
+    // Clip everything inside circle - ROUND GLOBE FIX
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.clip();
+
+    // Ocean background
+    const grad = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.3, 0, cx, cy, R);
     grad.addColorStop(0, '#0a2a4a');
     grad.addColorStop(0.5, '#061828');
     grad.addColorStop(1, '#020d18');
     ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
     ctx.fillStyle = grad; ctx.fill();
-
-    // Border glow
-    ctx.beginPath(); ctx.arc(cx, cy, R + 2, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(0,180,255,0.7)'; ctx.lineWidth = 2; ctx.stroke();
 
     // Grid lines
     for (let lat = -60; lat <= 60; lat += 30) {
@@ -111,6 +120,12 @@
     spec.addColorStop(1, 'rgba(255,255,255,0)');
     ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
     ctx.fillStyle = spec; ctx.fill();
+
+    ctx.restore(); // end clip
+
+    // Border glow OUTSIDE clip
+    ctx.beginPath(); ctx.arc(cx, cy, R + 2, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(0,180,255,0.7)'; ctx.lineWidth = 2; ctx.stroke();
   }
 
   function animate() {
