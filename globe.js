@@ -24,8 +24,7 @@
   function resize() {
     const container = canvas.parentElement;
     W = canvas.width = container.offsetWidth || 400;
-    H = canvas.height = 420;
-    canvas.style.height = '420px';
+    H = canvas.height = container.offsetHeight || 420;
     cx = W / 2; cy = H / 2;
     R = Math.min(W, H) * 0.38;
   }
