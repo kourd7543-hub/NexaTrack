@@ -28,7 +28,7 @@
     H = canvas.height = container.offsetHeight || 460;
     cx = W / 2;
     cy = H / 2;
-    R  = Math.min(W, H) * 0.42;
+    R  = Math.min(W, H) * 0.50;
   }
 
   function latLonToXY(lat, lon, rot) {
