@@ -390,7 +390,7 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 /* ===== CARDS ===== */
 .dash-grid {
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 380px 1fr;
   grid-template-rows: auto auto auto;
   gap: 20px;
 }
@@ -453,6 +453,13 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 .info-row i { color: var(--primary); width: 16px; text-align: center; }
 .info-row span { color: var(--text-muted); font-size: 13px; flex: 1; }
 .info-row strong { color: white; font-size: 13px; font-weight: 600; text-align: right; word-break: break-all; max-width: 180px; }
+
+.map-card {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  overflow: hidden;
+}
 
 .map-card #globe-container {
   flex: none;
