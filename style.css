@@ -389,21 +389,15 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 /* ===== CARDS ===== */
 .dash-grid {
   display: grid;
-  grid-template-columns: 360px 1fr;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: 360px 1fr 1fr;
+  grid-template-rows: auto auto;
   gap: 20px;
 }
 
-/* Map card spans only row 1 - same as info card */
-.map-card {
-  grid-column: 2;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 22px 22px 0 22px;
-  overflow: hidden;
-}
-
+.info-card { grid-column: 1; grid-row: 1 / span 2; }
+.map-card { grid-column: 2; grid-row: 1 / span 2; }
+.history-card { grid-column: 3; grid-row: 1; }
+.share-card { grid-column: 3; grid-row: 2; }
 /* History and share stack below map */
 .history-card {
   grid-column: 2;
