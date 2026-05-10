@@ -26,12 +26,11 @@
     const container = canvas.parentElement;
     const cw = container.offsetWidth  || 500;
     const ch = container.offsetHeight || 460;
-    const size = Math.min(cw, ch);
     W = canvas.width  = cw;
     H = canvas.height = ch;
     cx = cw / 2;
     cy = ch / 2;
-    R  = size * 0.44;
+    R  = ch * 0.44;
   }
 
   function latLonToXY(lat, lon, rot) {
