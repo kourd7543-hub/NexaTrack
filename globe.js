@@ -30,7 +30,7 @@
     H = canvas.height = ch;
     cx = cw / 2;
     cy = ch / 2;
-    R  = ch * 0.44;
+    R  = Math.min(cw, ch) * 0.38;
   }
 
   function latLonToXY(lat, lon, rot) {
