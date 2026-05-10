@@ -25,12 +25,12 @@
   function resize() {
     const container = canvas.parentElement;
     const cw = container.offsetWidth  || 500;
-    const ch = container.offsetHeight || 460;
+    const fixedH = 420;
     W = canvas.width  = cw;
-    H = canvas.height = ch;
+    H = canvas.height = fixedH;
     cx = cw / 2;
-    cy = ch / 2;
-    R  = Math.min(cw, ch) * 0.38;
+    cy = fixedH / 2;
+    R  = fixedH * 0.42;
   }
 
   function latLonToXY(lat, lon, rot) {
