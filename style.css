@@ -390,8 +390,34 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 .dash-grid {
   display: grid;
   grid-template-columns: 360px 1fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto;
   gap: 20px;
+}
+
+/* Map card spans only row 1 - same as info card */
+.map-card {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 22px 0 22px;
+  overflow: hidden;
+}
+
+/* History and share stack below map */
+.history-card {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.share-card {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.info-card {
+  grid-column: 1;
+  grid-row: 1 / span 3;
 }
 
 .card {
@@ -433,28 +459,21 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 .info-row span { color: var(--text-muted); font-size: 13px; flex: 1; }
 .info-row strong { color: white; font-size: 13px; font-weight: 600; text-align: right; word-break: break-all; max-width: 180px; }
 
-.map-card { 
-  grid-row: span 2; 
-  display: flex; 
-  flex-direction: column;
-  padding: 22px 22px 0 22px;
-  overflow: hidden;
-}
 .map-card #globe-container {
   flex: none;
   width: calc(100% + 44px);
-  height: 480px;
-  min-height: 480px;
-  max-height: 480px;
+  height: 400px;
+  min-height: 400px;
+  max-height: 400px;
   margin: 8px -22px 0 -22px;
   border-radius: 0 0 10px 10px;
 }
 .map-card #map {
   flex: none;
   width: calc(100% + 44px);
-  height: 480px;
-  min-height: 480px;
-  max-height: 480px;
+  height: 400px;
+  min-height: 400px;
+  max-height: 400px;
   margin: 8px -22px 0 -22px;
   border-radius: 0 0 10px 10px;
 }
