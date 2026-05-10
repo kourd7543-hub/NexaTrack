@@ -387,18 +387,18 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 }
 
 /* ===== CARDS ===== */
+/* ===== CARDS ===== */
 .dash-grid {
   display: grid;
-  grid-template-columns: 360px 1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: 400px 1fr;
+  grid-template-rows: auto auto auto;
   gap: 20px;
 }
 
-.info-card { grid-column: 1; grid-row: 1; }
+.info-card   { grid-column: 1; grid-row: 1; }
 .history-card { grid-column: 1; grid-row: 2; }
-.share-card { grid-column: 1; grid-row: 3; }
-.map-card { grid-column: 2 / span 2; grid-row: 1 / span 3; }
-
+.share-card  { grid-column: 1; grid-row: 3; }
+.map-card    { grid-column: 2; grid-row: 1 / span 3; }
 /* History and share stack below map */
 .history-card {
   grid-column: 2;
