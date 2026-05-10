@@ -3,66 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexaTrack — Real-Time Location Intelligence</title>
+<title>NexaTrack — Real-Time Location Tracker System</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- PARTICLE BACKGROUND -->
 <canvas id="particles"></canvas>
 
-<!-- HEADER -->
 <header>
   <div class="logo">
     <div class="logo-icon"><i class="fa-solid fa-location-dot"></i></div>
     <h2>Nexa<span>Track</span></h2>
   </div>
   <nav>
-  <nav>
     <a href="index.html" class="active" data-lang="nav-home">Home</a>
     <a href="about.html" data-lang="nav-about">About</a>
     <a href="find-device.html" data-lang="nav-find">Find Device</a>
     <a href="contact.html" data-lang="nav-contact">Contact</a>
   </nav>
-  <div class="nav-status">
-    <span class="status-dot"></span>
-    <span data-lang="nav-status">System Online</span>
+  <div class="nav-right">
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      <span data-lang="nav-status">System Online</span>
+    </div>
+    <button id="langToggleBtn" onclick="toggleLang()">
+      <span class="lang-active">EN</span>
+      <span class="lang-divider">|</span>
+      <span class="lang-inactive">हि</span>
+    </button>
   </div>
-<button id="langToggleBtn" onclick="toggleLang()">
-  <span class="lang-active">EN</span>
-  <span class="lang-divider">|</span>
-  <span class="lang-inactive">हि</span>
-</button>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <img src="background.jpg" alt="Background">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge"><i class="fa-solid fa-satellite-dish"></i> LIVE SYSTEM ACTIVE</div>
-    <h1 data-lang="hero-title">Real-Time Location<br><span data-lang="hero-title2">Tracker System</span></h1>
-    <p>Track live location, store history, and recover lost devices using phone number or share link.</p>
-    <button class="btn-primary" onclick="startTracking()">
+    <div class="hero-badge"><i class="fa-solid fa-satellite-dish"></i> <span data-lang="hero-badge">LIVE SYSTEM ACTIVE</span></div>
+    <h1><span data-lang="hero-title">Real-Time Location</span><br><span class="accent" data-lang="hero-title2">Tracker System</span></h1>
+    <p data-lang="hero-desc">Track live location, store history, and recover lost devices using phone number or share link.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="startTracking()">
         <i class="fa-solid fa-location-crosshairs"></i> <span data-lang="btn-track">Track My Location</span>
       </button>
       <button class="btn-secondary" onclick="window.location.href='find-device.html'">
         <i class="fa-solid fa-magnifying-glass-location"></i> <span data-lang="btn-find">Find Lost Device</span>
       </button>
-      
     </div>
   </div>
   <div class="hero-stats">
-    <div class="stat"><span id="stat-accuracy">--</span><label>Accuracy (m)</label></div>
-    <div class="stat"><span id="stat-speed">--</span><label>Speed (km/h)</label></div>
-    <div class="stat"><span id="stat-updates">0</span><label>Updates</label></div>
+    <div class="stat"><span id="stat-accuracy">--</span><label data-lang="stat-accuracy">Accuracy (m)</label></div>
+    <div class="stat"><span id="stat-speed">--</span><label data-lang="stat-speed">Speed (km/h)</label></div>
+    <div class="stat"><span id="stat-updates">0</span><label data-lang="stat-updates">Updates</label></div>
   </div>
 </section>
 
-<!-- DASHBOARD -->
 <section class="dashboard" id="dashboard">
   <div class="dash-header">
     <h2><i class="fa-solid fa-chart-line"></i> <span data-lang="dash-title">Live Dashboard</span></h2>
@@ -80,36 +77,34 @@
   </div>
 
   <div class="dash-grid">
-    <!-- Info Card -->
     <div class="card info-card">
-      <div class="card-title"><i class="fa-solid fa-circle-info"></i> Location Details</div>
+      <div class="card-title"><i class="fa-solid fa-circle-info"></i> <span data-lang="loc-details">Location Details</span></div>
       <div class="info-rows">
-        <div class="info-row"><i class="fa-solid fa-globe"></i><span>Latitude</span><strong id="lat">Waiting...</strong></div>
-        <div class="info-row"><i class="fa-solid fa-globe"></i><span>Longitude</span><strong id="lon">Waiting...</strong></div>
-        <div class="info-row"><i class="fa-solid fa-bullseye"></i><span>Accuracy</span><strong id="accuracy">Waiting...</strong></div>
-        <div class="info-row"><i class="fa-solid fa-mountain"></i><span>Altitude</span><strong id="altitude">N/A</strong></div>
-        <div class="info-row"><i class="fa-solid fa-wind"></i><span>Speed</span><strong id="speed">N/A</strong></div>
-        <div class="info-row"><i class="fa-solid fa-clock"></i><span>Last Updated</span><strong id="time">--</strong></div>
-        <div class="info-row"><i class="fa-solid fa-map-pin"></i><span>Address</span><strong id="address" style="font-size:12px">Fetching...</strong></div>
+        <div class="info-row"><i class="fa-solid fa-globe"></i><span data-lang="lbl-lat">Latitude</span><strong id="lat">Waiting...</strong></div>
+        <div class="info-row"><i class="fa-solid fa-globe"></i><span data-lang="lbl-lon">Longitude</span><strong id="lon">Waiting...</strong></div>
+        <div class="info-row"><i class="fa-solid fa-bullseye"></i><span data-lang="lbl-acc">Accuracy</span><strong id="accuracy">Waiting...</strong></div>
+        <div class="info-row"><i class="fa-solid fa-mountain"></i><span data-lang="lbl-alt">Altitude</span><strong id="altitude">N/A</strong></div>
+        <div class="info-row"><i class="fa-solid fa-wind"></i><span data-lang="lbl-speed">Speed</span><strong id="speed">N/A</strong></div>
+        <div class="info-row"><i class="fa-solid fa-clock"></i><span data-lang="lbl-updated">Last Updated</span><strong id="time">--</strong></div>
+        <div class="info-row"><i class="fa-solid fa-map-pin"></i><span data-lang="lbl-address">Address</span><strong id="address" style="font-size:12px">Fetching...</strong></div>
       </div>
     </div>
 
-    <!-- Map -->
-<div class="card map-card">
-  <div class="card-title"><i class="fa-solid fa-map"></i> <span data-lang="map-title">Live Map</span></div>
-  <div id="globe-container">
-    <canvas id="globe-canvas"></canvas>
-    <div class="globe-overlay-text">
-      <i class="fa-solid fa-location-crosshairs fa-beat"></i>
-      <span data-lang="globe-text">Click "Track My Location" to begin</span>
+    <div class="card map-card">
+      <div class="card-title"><i class="fa-solid fa-map"></i> <span data-lang="map-title">Live Map</span></div>
+      <div id="globe-container">
+        <canvas id="globe-canvas"></canvas>
+        <div class="globe-overlay-text">
+          <i class="fa-solid fa-location-crosshairs fa-beat"></i>
+          <span data-lang="globe-text">Click "Track My Location" to begin</span>
+        </div>
+        <div class="orbit-ring orbit-1"><div class="satellite"><i class="fa-solid fa-satellite"></i></div></div>
+        <div class="signal-pulse p1"></div>
+        <div class="signal-pulse p2"></div>
+        <div class="signal-pulse p3"></div>
+      </div>
+      <div id="map" style="display:none;"></div>
     </div>
-    <div class="orbit-ring orbit-1"><div class="satellite"><i class="fa-solid fa-satellite"></i></div></div>
-    <div class="signal-pulse p1"></div>
-    <div class="signal-pulse p2"></div>
-    <div class="signal-pulse p3"></div>
-  </div>
-  <div id="map" style="display:none;"></div>
-</div>
 
     <div class="card history-card">
       <div class="card-title"><i class="fa-solid fa-clock-rotate-left"></i> <span data-lang="history-title">Location History</span></div>
@@ -138,7 +133,6 @@
           <span data-lang="share-lost">Lost Device Recovery</span>
         </div>
       </div>
-      </div>
       <div class="share-link-box" id="shareLinkBox" style="display:none">
         <input type="text" id="shareLink" readonly>
         <button onclick="copyToClipboard()"><i class="fa-solid fa-copy"></i></button>
@@ -147,23 +141,22 @@
   </div>
 </section>
 
-<!-- FEATURES STRIP -->
 <section class="features-strip">
-  <div class="feat<!ure"><i class="fa-solid fa-satellite-dish"></i><span>Live GPS Tracking</span></div>
-  <div class="feature"><i class="fa-solid fa-clock-rotate-left"></i><span>Location History</span></div>
-  <div class="feature"><i class="fa-solid fa-share-nodes"></i><span>Share Location</span></div>
-  <div class="feature"><i class="fa-solid fa-mobile-screen"></i><span>Device Recovery</span></div>
-  <div class="feature"><i class="fa-solid fa-shield-halved"></i><span>Privacy First</span></div>
+  <div class="feature"><i class="fa-solid fa-satellite-dish"></i><span data-lang="feat-1">Live GPS Tracking</span></div>
+  <div class="feature"><i class="fa-solid fa-clock-rotate-left"></i><span data-lang="feat-2">Location History</span></div>
+  <div class="feature"><i class="fa-solid fa-share-nodes"></i><span data-lang="feat-3">Share Location</span></div>
+  <div class="feature"><i class="fa-solid fa-mobile-screen"></i><span data-lang="feat-4">Device Recovery</span></div>
+  <div class="feature"><i class="fa-solid fa-shield-halved"></i><span data-lang="feat-5">Privacy First</span></div>
 </section>
 
 <footer>
   <div class="footer-content">
     <div class="footer-logo"><i class="fa-solid fa-location-dot"></i> NexaTrack</div>
-    <p>© 2026 NexaTrack | Developed by Sandeep</p>
+    <p data-lang="footer-copy">© 2026 NexaTrack | Developed by Sandeep</p>
     <div class="footer-links">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="privacy.html" data-lang="footer-privacy">Privacy Policy</a>
+      <a href="about.html" data-lang="footer-about">About</a>
+      <a href="contact.html" data-lang="footer-contact">Contact</a>
     </div>
   </div>
 </footer>
@@ -177,9 +170,7 @@
 <script src="lang.js"></script>
 <script>
   if (new URLSearchParams(window.location.search).get('track') === '1') {
-    window.addEventListener('load', () => {
-      setTimeout(() => startTracking(), 1500);
-    });
+    window.addEventListener('load', () => { setTimeout(() => startTracking(), 1500); });
   }
 </script>
 </body>

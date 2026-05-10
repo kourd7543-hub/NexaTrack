@@ -24,13 +24,13 @@
 
   function resize() {
     const container = canvas.parentElement;
-    const cw = container.offsetWidth  || 500;
+    const cw = container.offsetWidth || 500;
     const fixedH = 420;
     W = canvas.width  = cw;
     H = canvas.height = fixedH;
     cx = cw / 2;
     cy = fixedH / 2;
-    R  = fixedH * 0.42;
+    R  = fixedH * 0.44;
   }
 
   function latLonToXY(lat, lon, rot) {

@@ -8,7 +8,7 @@ const TRANSLATIONS = {
     // HERO
     'hero-badge': 'LIVE SYSTEM ACTIVE',
     'hero-title': 'Real-Time Location',
-    'hero-title2': 'Intelligence Platform',
+    'hero-title2': 'Tracker System',
     'hero-desc': 'Track live location, store history, and recover lost devices using phone number or share link.',
     'btn-track': 'Track My Location', 'btn-find': 'Find Lost Device',
     // STATS
@@ -91,7 +91,7 @@ const TRANSLATIONS = {
     // HERO
     'hero-badge': 'लाइव सिस्टम सक्रिय',
     'hero-title': 'रियल-टाइम लोकेशन',
-    'hero-title2': 'इंटेलिजेंस प्लेटफॉर्म',
+    'hero-title2': 'ट्रैकर सिस्टम',
     'hero-desc': 'लाइव लोकेशन ट्रैक करें, हिस्ट्री सेव करें, और फोन नंबर या शेयर लिंक से खोया डिवाइस ढूंढें।',
     'btn-track': 'मेरी लोकेशन ट्रैक करें', 'btn-find': 'खोया डिवाइस ढूंढें',
     // STATS

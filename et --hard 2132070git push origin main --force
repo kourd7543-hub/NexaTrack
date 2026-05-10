@@ -1,0 +1,51 @@
+[33mb5d3f3c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Fix: map card fixed height, no empty space below globe
+[33m9531fa0[m Fix: globe perfectly round, fixed height 480px
+[33m52f54e8[m Fix: globe perfect round shape
+[33mee6f910[m Fix: globe fills full container, no empty space
+[33m0b7954e[m Fix: Tracker System title, globe fixed, header fixed
+[33m9e449d7[m Fix: Tracker System title, globe fixed height
+[33mc4faf32[m Fix: globe round proper, header right corner, tracker system title
+[33m0f04cb4[m Fix: globe round, title changed
+[33m589a3f9[m Fix: globe fills full card, header layout fixed
+[33m56a66d6[m Fix: header layout all pages, globe fixed height, Hindi same font size
+[33m6a404b6[m Fix: Hindi language, header fix, all pages updated
+[33m6a8e7e3[m Fix: Hindi language all pages, header layout, toast messages
+[33m2132070[m Fix: globe fixed size, hindi language, code popup 12sec
+[33m007286a[m Fix globe overflow and English messages on find-device page
+[33me0f5d12[m Fix English default language and find-device page text
+[33m40a51f9[m Default English language, shorter share messages
+[33m2b9775b[m Remove SOS emergency feature
+[33m22682de[m Clean find-device page — removed Tasker, simplified UI
+[33m467b3a3[m Remove SOS, simplify find-device with Tasker config
+[33m56a7fb9[m Add IMEI report, Tasker auto-track, simplified UI
+[33m73683d4[m Update find-device page, JS logic and styles
+[33m46e51f3[m Restored original code with automation logic
+[33m492ef0d[m Restored effective look and added navbar
+[33me49b2bf[m Fixed page styling to dark tech theme
+[33m76d89f9[m Final link and automation update
+[33me642521[m distance and route feature
+[33mceca456[m SOS emergency alert added
+[33m9042c0f[m get directions in showRecoveryResult
+[33ma3a051c[m get directions in map popup
+[33mc65311b[m directions feature added
+[33mbbb86e1[m fix globe size
+[33m4b94b60[m fix globe size
+[33m05c33f1[m short messages for whatsapp and sms
+[33md20d05b[m improve address format
+[33m3bdc43f[m fix location.js + age check removed
+[33m321abe9[m fix index.html structure
+[33m72b7130[m fix auto track script order
+[33m0ad5c2f[m fix tracking link to vercel
+[33mca2392d[m fix api url vercel
+[33mba5e34a[m fix merge conflicts
+[33me4c7244[m[33m ([m[1;31morigin/master[m[33m)[m vercel api function
+[33me8e786d[m fix age check
+[33m4e98982[m jsonbin connected
+[33m1ac7b7d[m save location to server
+[33m527bb5e[m lang toggle + english fix
+[33m978b217[m lang toggle + english fix
+[33m4f5cb7b[m auto tracking on link open
+[33m57d70cf[m netlify functions added
+[33mec8a88e[m Update README.md
+[33m8da5dfd[m Update README.md
+[33m818c30d[m Add files via upload
