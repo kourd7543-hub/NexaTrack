@@ -23,14 +23,13 @@
   ];
 
   function resize() {
-    const container = canvas.parentElement;
-    const cw = container.offsetWidth || 500;
-    const fixedH = 420;
-    W = canvas.width  = cw;
-    H = canvas.height = fixedH;
-    cx = cw / 2;
-    cy = fixedH / 2;
-    R  = fixedH * 0.44;
+    // Fixed square canvas — always round globe
+    const SIZE = 420;
+    W = canvas.width  = SIZE;
+    H = canvas.height = SIZE;
+    cx = SIZE / 2;
+    cy = SIZE / 2;
+    R  = SIZE * 0.44;
   }
 
   function latLonToXY(lat, lon, rot) {
@@ -45,13 +44,11 @@
   function drawGlobe(rot) {
     ctx.clearRect(0, 0, W, H);
 
-    // ── CLIP: sab kuch perfect circle ke andar ──
     ctx.save();
     ctx.beginPath();
     ctx.arc(cx, cy, R, 0, Math.PI * 2);
     ctx.clip();
 
-    // Ocean background
     const grad = ctx.createRadialGradient(cx - R*0.3, cy - R*0.3, 0, cx, cy, R);
     grad.addColorStop(0, '#0d3060');
     grad.addColorStop(0.5, '#061828');
@@ -61,7 +58,6 @@
     ctx.fillStyle = grad;
     ctx.fill();
 
-    // Grid lines (latitude)
     for (let lat = -60; lat <= 60; lat += 30) {
       ctx.beginPath(); let first = true;
       for (let lon = -180; lon <= 180; lon += 3) {
@@ -75,7 +71,6 @@
       ctx.stroke();
     }
 
-    // Grid lines (longitude)
     for (let lon = 0; lon < 360; lon += 30) {
       ctx.beginPath(); let first = true;
       for (let lat = -90; lat <= 90; lat += 3) {
@@ -89,7 +84,6 @@
       ctx.stroke();
     }
 
-    // Continents
     continents.forEach(continent => {
       ctx.beginPath(); let started = false;
       continent.forEach(([lat, lon]) => {
@@ -105,7 +99,6 @@
       ctx.stroke();
     });
 
-    // City dots
     locationDots.forEach(([lat, lon], i) => {
       const p = latLonToXY(lat, lon, rot);
       if (p.z < 0) return;
@@ -117,14 +110,13 @@
       ctx.stroke();
       ctx.beginPath();
       ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle    = '#00e5ff';
-      ctx.shadowBlur   = 8;
-      ctx.shadowColor  = '#00e5ff';
+      ctx.fillStyle   = '#00e5ff';
+      ctx.shadowBlur  = 8;
+      ctx.shadowColor = '#00e5ff';
       ctx.fill();
       ctx.shadowBlur = 0;
     });
 
-    // Specular highlight
     const spec = ctx.createRadialGradient(cx-R*0.35, cy-R*0.35, 0, cx-R*0.2, cy-R*0.2, R*0.55);
     spec.addColorStop(0, 'rgba(255,255,255,0.09)');
     spec.addColorStop(1, 'rgba(255,255,255,0)');
@@ -133,9 +125,8 @@
     ctx.fillStyle = spec;
     ctx.fill();
 
-    ctx.restore(); // ── end clip ──
+    ctx.restore();
 
-    // Border glow (bahar clip ke)
     ctx.beginPath();
     ctx.arc(cx, cy, R + 2, 0, Math.PI * 2);
     ctx.strokeStyle = 'rgba(0,180,255,0.75)';

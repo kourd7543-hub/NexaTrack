@@ -400,18 +400,21 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 }
 
 .map-card #globe-container {
-  flex: 1;
-  width: calc(100% + 44px);
-  margin: 8px -22px 0 -22px;
-  min-height: 600px;
-  border-radius: 0 0 10px 10px;
+  flex: none;
+  width: 420px;
+  height: 420px;
+  min-height: 420px;
+  max-height: 420px;
+  margin: 8px auto 0 auto;
+  border-radius: 10px;
 }
 
 .map-card #map {
   flex: 1;
   width: calc(100% + 44px);
   margin: 8px -22px 0 -22px;
-  min-height: 600px;
+  min-height: 420px;
+  max-height: 420px;
   border-radius: 0 0 10px 10px;
 }
 
@@ -961,13 +964,13 @@ footer {
 /* ===== GLOBE ===== */
 #globe-container {
   position: relative;
+  width: 420px;
   height: 420px;
   min-height: 420px;
   max-height: 420px;
-  width: 100%;
   display: flex; align-items: center; justify-content: center;
   background: radial-gradient(ellipse at center, #020d18 0%, #000508 100%);
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
