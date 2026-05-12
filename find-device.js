@@ -87,7 +87,7 @@ function watchLive() {
       const data = await res.json();
       if (data && data.lat) {
         const age = Date.now() - (data.updatedAt || 0);
-        if (age < 600000) {
+        if (age < 86400000) {
           clearInterval(watchInterval);
           document.getElementById('stopBtn').style.display = 'none';
           showLiveData(data);
