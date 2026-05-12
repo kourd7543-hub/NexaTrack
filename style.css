@@ -400,23 +400,26 @@ nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 }
 
 .map-card #globe-container {
-  flex: 1;
+  flex: none;
   width: calc(100% + 44px);
+  height: 420px;
+  min-height: 420px;
+  max-height: 420px;
   margin: 8px -22px 0 -22px;
-  min-height: 600px;
   border-radius: 0 0 10px 10px;
 }
 
 .map-card #map {
-  flex: 1;
+  flex: none;
   width: calc(100% + 44px);
+  height: 420px;
+  min-height: 420px;
+  max-height: 420px;
   margin: 8px -22px 0 -22px;
-  min-height: 600px;
   border-radius: 0 0 10px 10px;
 }
 
 #map { border-radius: 10px; }
-
 .card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
