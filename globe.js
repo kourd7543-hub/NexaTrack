@@ -23,11 +23,12 @@
   ];
 
   function resize() {
-    // Fixed square canvas — always round globe
+    const container = canvas.parentElement;
+    const cw = container.offsetWidth || 420;
     const SIZE = 420;
-    W = canvas.width  = SIZE;
+    W = canvas.width  = cw;
     H = canvas.height = SIZE;
-    cx = SIZE / 2;
+    cx = cw / 2;
     cy = SIZE / 2;
     R  = SIZE * 0.44;
   }
